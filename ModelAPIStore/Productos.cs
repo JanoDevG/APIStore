@@ -27,6 +27,8 @@ namespace ModelAPIStore
         public int stock { get; set; }
         public System.DateTime fecha_creacion { get; set; }
         public int precio { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fecha_suspencion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }

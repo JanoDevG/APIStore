@@ -12,6 +12,8 @@
           <Property Name="id_ciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_region" Type="int" Nullable="false" />
           <Property Name="nombre_ciudad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Cuentas">
           <Key>
@@ -24,6 +26,8 @@
           <Property Name="usuario_supendido" Type="bit" />
           <Property Name="fecha_suspencion" Type="datetime" />
           <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fechasuspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Despachos_Electronico">
           <Key>
@@ -33,6 +37,8 @@
           <Property Name="estado" Type="bit" Nullable="false" />
           <Property Name="id_factura" Type="int" Nullable="false" />
           <Property Name="fecha_despacho" Type="datetime" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Detalle_Ventas">
           <Key>
@@ -41,6 +47,8 @@
           <Property Name="id_detalle_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="id_venta" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Direccion">
           <Key>
@@ -51,6 +59,8 @@
           <Property Name="calle" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="numero" Type="int" Nullable="false" />
           <Property Name="detalle_direccion" Type="varchar" MaxLength="100" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_sspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -61,6 +71,8 @@
           <Property Name="fecha_facturacion" Type="date" Nullable="false" />
           <Property Name="id_direccion" Type="int" Nullable="false" />
           <Property Name="iva_actual" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Lenguaje_Backend">
           <Key>
@@ -69,6 +81,8 @@
           <Property Name="id_lenguaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Paises">
           <Key>
@@ -76,6 +90,8 @@
           </Key>
           <Property Name="id_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_pais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -88,6 +104,8 @@
           <Property Name="stock" Type="int" Nullable="false" />
           <Property Name="fecha_creacion" Type="date" Nullable="false" />
           <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Regiones">
           <Key>
@@ -96,6 +114,8 @@
           <Property Name="id_region" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_region" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id_pais" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Tipo_Licencias">
           <Key>
@@ -103,6 +123,8 @@
           </Key>
           <Property Name="id_licencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_licencia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -114,6 +136,8 @@
           <Property Name="rut_usuario" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="giro_empresa" Type="varchar" MaxLength="40" />
           <Property Name="rut_empresa" Type="varchar" MaxLength="10" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_susencion" Type="datetime" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -123,6 +147,8 @@
           <Property Name="id_usuario" Type="int" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
           <Property Name="fecha_venta" Type="date" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
         <Association Name="FK_Ciudades_Regiones">
           <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
@@ -343,6 +369,8 @@
           <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_region" Type="Int32" Nullable="false" />
           <Property Name="nombre_ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Regiones" Relationship="Self.FK_Ciudades_Regiones" FromRole="Ciudades" ToRole="Regiones" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Ciudades" FromRole="Ciudades" ToRole="Direccion" />
         </EntityType>
@@ -357,6 +385,8 @@
           <Property Name="usuario_supendido" Type="Boolean" />
           <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fechasuspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Cuentas" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Despachos_Electronico">
@@ -367,6 +397,8 @@
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <Property Name="id_factura" Type="Int32" Nullable="false" />
           <Property Name="fecha_despacho" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Factura" Relationship="Self.FK_Despachos_Electronico_Factura" FromRole="Despachos_Electronico" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Detalle_Ventas">
@@ -376,6 +408,8 @@
           <Property Name="id_detalle_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_producto" Type="Int32" Nullable="false" />
           <Property Name="id_venta" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Detalle_Ventas_Productos" FromRole="Detalle_Ventas" ToRole="Productos" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK_Detalle_Ventas_Ventas" FromRole="Detalle_Ventas" ToRole="Ventas" />
         </EntityType>
@@ -388,6 +422,8 @@
           <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="numero" Type="Int32" Nullable="false" />
           <Property Name="detalle_direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_sspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK_Direccion_Ciudades" FromRole="Direccion" ToRole="Ciudades" />
           <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Direccion" FromRole="Direccion" ToRole="Factura" />
         </EntityType>
@@ -400,6 +436,8 @@
           <Property Name="fecha_facturacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_direccion" Type="Int32" Nullable="false" />
           <Property Name="iva_actual" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Despachos_Electronico" Relationship="Self.FK_Despachos_Electronico_Factura" FromRole="Factura" ToRole="Despachos_Electronico" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_Factura_Direccion" FromRole="Factura" ToRole="Direccion" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK_Factura_Ventas" FromRole="Factura" ToRole="Ventas" />
@@ -411,6 +449,8 @@
           <Property Name="id_lenguaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Lenguaje_Backend" FromRole="Lenguaje_Backend" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Paises">
@@ -419,6 +459,8 @@
           </Key>
           <Property Name="id_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Regiones" Relationship="Self.FK_Regiones_Paises" FromRole="Paises" ToRole="Regiones" />
         </EntityType>
         <EntityType Name="Productos">
@@ -432,6 +474,8 @@
           <Property Name="stock" Type="Int32" Nullable="false" />
           <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Detalle_Ventas" Relationship="Self.FK_Detalle_Ventas_Productos" FromRole="Productos" ToRole="Detalle_Ventas" />
           <NavigationProperty Name="Lenguaje_Backend" Relationship="Self.FK_Productos_Lenguaje_Backend" FromRole="Productos" ToRole="Lenguaje_Backend" />
           <NavigationProperty Name="Tipo_Licencias" Relationship="Self.FK_Productos_Tipo_Licencias" FromRole="Productos" ToRole="Tipo_Licencias" />
@@ -443,6 +487,8 @@
           <Property Name="id_region" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_pais" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Ciudades" Relationship="Self.FK_Ciudades_Regiones" FromRole="Regiones" ToRole="Ciudades" />
           <NavigationProperty Name="Paises" Relationship="Self.FK_Regiones_Paises" FromRole="Regiones" ToRole="Paises" />
         </EntityType>
@@ -452,6 +498,8 @@
           </Key>
           <Property Name="id_licencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_licencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Tipo_Licencias" FromRole="Tipo_Licencias" ToRole="Productos" />
         </EntityType>
         <EntityType Name="Usuarios">
@@ -464,6 +512,8 @@
           <Property Name="rut_usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="giro_empresa" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="rut_empresa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_susencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Usuarios" ToRole="Cuentas" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
         </EntityType>
@@ -475,6 +525,8 @@
           <Property Name="id_usuario" Type="Int32" Nullable="false" />
           <Property Name="id_producto" Type="Int32" Nullable="false" />
           <Property Name="fecha_venta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Detalle_Ventas" Relationship="Self.FK_Detalle_Ventas_Ventas" FromRole="Ventas" ToRole="Detalle_Ventas" />
           <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Ventas" FromRole="Ventas" ToRole="Factura" />
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
@@ -623,7 +675,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="APIStoreEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="APIStoreEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ciudades" EntityType="Self.Ciudades" />
           <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
           <EntitySet Name="Despachos_Electronico" EntityType="Self.Despachos_Electronico" />
@@ -691,13 +743,15 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="APIStoreModelStoreContainer" CdmEntityContainer="APIStoreEntities">
+        <EntityContainerMapping StorageEntityContainer="APIStoreModelStoreContainer" CdmEntityContainer="APIStoreEntities1">
           <EntitySetMapping Name="Ciudades">
             <EntityTypeMapping TypeName="APIStoreModel.Ciudades">
               <MappingFragment StoreEntitySet="Ciudades">
                 <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
                 <ScalarProperty Name="id_region" ColumnName="id_region" />
                 <ScalarProperty Name="nombre_ciudad" ColumnName="nombre_ciudad" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -711,6 +765,8 @@
                 <ScalarProperty Name="usuario_supendido" ColumnName="usuario_supendido" />
                 <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
                 <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fechasuspencion" ColumnName="fechasuspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -721,6 +777,8 @@
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="id_factura" ColumnName="id_factura" />
                 <ScalarProperty Name="fecha_despacho" ColumnName="fecha_despacho" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -730,6 +788,8 @@
                 <ScalarProperty Name="id_detalle_venta" ColumnName="id_detalle_venta" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -741,6 +801,8 @@
                 <ScalarProperty Name="calle" ColumnName="calle" />
                 <ScalarProperty Name="numero" ColumnName="numero" />
                 <ScalarProperty Name="detalle_direccion" ColumnName="detalle_direccion" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_sspencion" ColumnName="fecha_sspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -752,6 +814,8 @@
                 <ScalarProperty Name="fecha_facturacion" ColumnName="fecha_facturacion" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
                 <ScalarProperty Name="iva_actual" ColumnName="iva_actual" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -761,6 +825,8 @@
                 <ScalarProperty Name="id_lenguaje" ColumnName="id_lenguaje" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -769,6 +835,8 @@
               <MappingFragment StoreEntitySet="Paises">
                 <ScalarProperty Name="id_pais" ColumnName="id_pais" />
                 <ScalarProperty Name="nombre_pais" ColumnName="nombre_pais" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -782,6 +850,8 @@
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
                 <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -791,6 +861,8 @@
                 <ScalarProperty Name="id_region" ColumnName="id_region" />
                 <ScalarProperty Name="nombre_region" ColumnName="nombre_region" />
                 <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -799,6 +871,8 @@
               <MappingFragment StoreEntitySet="Tipo_Licencias">
                 <ScalarProperty Name="id_licencia" ColumnName="id_licencia" />
                 <ScalarProperty Name="nombre_licencia" ColumnName="nombre_licencia" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -811,6 +885,8 @@
                 <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
                 <ScalarProperty Name="giro_empresa" ColumnName="giro_empresa" />
                 <ScalarProperty Name="rut_empresa" ColumnName="rut_empresa" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_susencion" ColumnName="fecha_susencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -821,6 +897,8 @@
                 <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

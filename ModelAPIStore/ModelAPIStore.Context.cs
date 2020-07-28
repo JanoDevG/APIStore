@@ -13,10 +13,10 @@ namespace ModelAPIStore
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class APIStoreEntities : DbContext
+    public partial class APIStoreEntities1 : DbContext
     {
-        public APIStoreEntities()
-            : base("name=APIStoreEntities")
+        public APIStoreEntities1()
+            : base("name=APIStoreEntities1")
         {
         }
     

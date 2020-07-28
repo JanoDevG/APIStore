@@ -27,6 +27,8 @@ namespace ModelAPIStore
         public string rut_usuario { get; set; }
         public string giro_empresa { get; set; }
         public string rut_empresa { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fecha_susencion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cuentas> Cuentas { get; set; }

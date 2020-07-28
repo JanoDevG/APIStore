@@ -23,6 +23,8 @@ namespace ModelAPIStore
         public int id_lenguaje { get; set; }
         public string nombre { get; set; }
         public string description { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fecha_suspencion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Productos> Productos { get; set; }

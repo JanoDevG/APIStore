@@ -18,6 +18,8 @@ namespace ModelAPIStore
         public bool estado { get; set; }
         public int id_factura { get; set; }
         public System.DateTime fecha_despacho { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fecha_suspencion { get; set; }
     
         public virtual Factura Factura { get; set; }
     }

@@ -25,6 +25,8 @@ namespace ModelAPIStore
         public System.DateTime fecha_facturacion { get; set; }
         public int id_direccion { get; set; }
         public int iva_actual { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fecha_suspencion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Despachos_Electronico> Despachos_Electronico { get; set; }

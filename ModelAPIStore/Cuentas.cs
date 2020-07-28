@@ -21,6 +21,8 @@ namespace ModelAPIStore
         public Nullable<bool> usuario_supendido { get; set; }
         public Nullable<System.DateTime> fecha_suspencion { get; set; }
         public System.DateTime fecha_creacion { get; set; }
+        public Nullable<bool> suspencion { get; set; }
+        public Nullable<System.DateTime> fechasuspencion { get; set; }
     
         public virtual Usuarios Usuarios { get; set; }
     }

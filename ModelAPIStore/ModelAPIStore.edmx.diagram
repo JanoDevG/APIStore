@@ -4,20 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a04cc88f1c0349f795aac9e7c8faeb22" Name="Diagram1">
-        <EntityTypeShape EntityType="APIStoreModel.Ciudades" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Cuentas" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Despachos_Electronico" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Detalle_Ventas" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Direccion" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Factura" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Lenguaje_Backend" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Paises" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Productos" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Regiones" Width="1.5" PointX="1.5" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Tipo_Licencias" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Usuarios" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Ventas" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+      <Diagram DiagramId="5a56118575ec42e0911e1e8328929cff" Name="Diagram1">
+        <EntityTypeShape EntityType="APIStoreModel.Ciudades" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Cuentas" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Despachos_Electronico" Width="1.5" PointX="10.5" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Detalle_Ventas" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Direccion" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Factura" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Lenguaje_Backend" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Paises" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Productos" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Regiones" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Tipo_Licencias" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Usuarios" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStoreModel.Ventas" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="APIStoreModel.FK_Ciudades_Regiones" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Direccion_Ciudades" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Cuentas_Usuarios" ManuallyRouted="false" />
