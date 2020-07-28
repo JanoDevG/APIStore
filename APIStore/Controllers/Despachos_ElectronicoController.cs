@@ -15,9 +15,9 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Despachos_Electronico
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            List<Despachos_Electronico> listaUsu = db.Despachos_Electronico.Where(x => x.suspencion == false).ToList();
+            List<Despachos_Electronico> listaUsu = db.Despachos_Electronico.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(listaUsu);
         }
 

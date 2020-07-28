@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ModelAPIStore.Usuarios>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<h2>Inicio</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellido_usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rut_usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.giro_empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rut_empresa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellido_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rut_usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giro_empresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rut_empresa)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_usuario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_usuario }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_usuario })
+        </td>
+    </tr>
+}
+
+</table>

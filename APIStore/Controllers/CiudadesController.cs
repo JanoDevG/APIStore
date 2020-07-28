@@ -18,7 +18,7 @@ namespace APIStore.Controllers
         // GET: Ciudades
         public ActionResult Index()
         {
-            List<Ciudades> lis = db.Ciudades.Where(x => x.suspencion == false).ToList();
+            List<Ciudades> lis = db.Ciudades.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(lis);
         }
 

@@ -16,9 +16,9 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Facturas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            List<Factura> listaUsu = db.Factura.Where(x => x.suspencion == false).ToList();
+            List<Factura> listaUsu = db.Factura.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(listaUsu);
         }
 

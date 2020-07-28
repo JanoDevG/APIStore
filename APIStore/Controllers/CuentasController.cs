@@ -18,7 +18,7 @@ namespace APIStore.Controllers
         // GET: Cuentas
         public ActionResult Index()
         {
-            List<Cuentas> lis = db.Cuentas.Where(x => x.suspencion == false).ToList();
+            List<Cuentas> lis = db.Cuentas.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(lis);
         }
 

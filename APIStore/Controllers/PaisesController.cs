@@ -16,9 +16,9 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Paises
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            List<Paises> listaUsu = db.Paises.Where(x => x.suspencion == false).ToList();
+            List<Paises> listaUsu = db.Paises.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(listaUsu);
         }
 

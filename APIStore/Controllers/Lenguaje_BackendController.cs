@@ -16,9 +16,9 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Lenguaje_Backend
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            List<Lenguaje_Backend> listaUsu = db.Lenguaje_Backend.Where(x => x.suspencion == false).ToList();
+            List<Lenguaje_Backend> listaUsu = db.Lenguaje_Backend.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(listaUsu);
         }
 

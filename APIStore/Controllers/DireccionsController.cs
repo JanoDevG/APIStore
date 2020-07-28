@@ -18,7 +18,7 @@ namespace APIStore.Controllers
         // GET: Direccions
         public ActionResult Index()
         {
-            List<Direccion> listaUsu = db.Direccion.Where(x => x.suspencion == false).ToList();
+            List<Direccion> listaUsu = db.Direccion.Where(x => x.suspencion == false  | x.suspencion == null).ToList();
             return View(listaUsu);
         }
 

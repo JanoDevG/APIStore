@@ -1,0 +1,64 @@
+﻿@model ModelAPIStore.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+    <h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar este usuario?</h3>
+<div>
+    <h4>Usuarios</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rut_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rut_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giro_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giro_empresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rut_empresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rut_empresa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>
