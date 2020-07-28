@@ -58,8 +58,7 @@ namespace Ecomerce.Controllers
                 cantidad
             }), JsonRequestBehavior.AllowGet);
         }
-
-        public JsonResult Eliminar(int id)
+        public JsonResult Eliminar(int id_producto)
         {
             Carritos carrito = null;
             if (Session["carrito"] == null)
@@ -70,7 +69,7 @@ namespace Ecomerce.Controllers
             {
                 carrito = (Carritos)Session["carrito"];
             }
-            carrito.Eliminar(id);
+            carrito.Eliminar(id_producto);
             return Json(new { Mensaje = "Elemento eliminado", Estado = true }, JsonRequestBehavior.AllowGet);
         }
 
