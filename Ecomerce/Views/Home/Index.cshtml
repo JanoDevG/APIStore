@@ -30,45 +30,33 @@
 
 
 
-<script>function AgregarCarrito(id) {
+<script>function AgregarCarrito(id_producto) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
-        formData.append("id",id);
+    formData.append("id_producto", id_producto);
         xhr.onreadystatechange = function () {
-
-
-
             if (xhr.status == 200 && xhr.readyState == 4) {
                 //console.log(xhr.responseText);
                 var json = JSON.parse(xhr.responseText);
                 var Carro = document.getElementById("contenedorCarrito");
                 var html = "";
                 html = "<div class='row'>";
-                html += "<div class='col-md-3'>Descripcion</div>";
+                html += "<div class='col-md-3'>nombre_producto</div>";
                 html += "<div class='col-md-3'>Precio</div>";
                 html += "<div class='col-md-3'>Cantidad</div>";
                 html += "<div class='col-md-3'>SubTotal</div>";
                 for (var i = 0; i < json.length; i++) {
-                    html += "<div class='col-md-3'>" + json[i].descripcion + "</div>";
+                    html += "<div class='col-md-3'>" + json[i].nombre_producto + "</div>";
                     html += "<div class='col-md-3'>" + json[i].precio + "</div>";
                     html += "<div class='col-md-3'>" + json[i].Cantidad + "</div>";
                     html += "<div class='col-md-3'>" + json[i].SubTotal + "</div>";
                 }
-
-
-
                 html += "</div>";
                 html += "<div>Total: " + json[json.length-1].total + "</div>";
                 Carro.innerHTML = html;
-
-
-
             }
         }
-
-
-
-        xhr.open("post", "/Carrito/Agregar")
+        xhr.open("post", "/Carro/Agregar")
         xhr.send(formData);
     }</script>
 

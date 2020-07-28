@@ -16,31 +16,31 @@ namespace ModelAPIStore
         }
         public void Agregar(Productos pro)
         {
-            if (pro.stock <= 0)
+            if (pro.Cantidad <= 0)
             {
-                pro.stock = 1;
+                pro.Cantidad = 1;
             }
             Productos ele = elementos.Where(x => x.id_producto == pro.id_producto).FirstOrDefault();
             if (ele == null)
             {
-                pro.SubTotal = pro.precio * pro.stock;
+                pro.SubTotal = pro.precio * pro.Cantidad;
                 elementos.Add(pro);
             }
             else
             {
-                sbyte stockNueva = (sbyte)(ele.stock + pro.stock);
-                Editar(ele.id_producto, stockNueva);
+                sbyte Cantidad = (sbyte)(ele.Cantidad + pro.Cantidad);
+                Editar(ele.id_producto, Cantidad);
             }
             Totalizar();
             Contar();
         }
-        public void Editar(int id, sbyte stock)
+        public void Editar(int id, sbyte cantidad)
         {
             Productos ele = elementos.Where(x => x.id_producto == id).FirstOrDefault();
             if (ele != null)
             {
-                ele.stock = stock;
-                ele.SubTotal = ele.precio * stock;
+                ele.Cantidad = cantidad;
+                ele.SubTotal = ele.precio * cantidad;
             }
             else
             {
@@ -71,7 +71,7 @@ namespace ModelAPIStore
             int count = 0;
             foreach (Productos p in elementos)
             {
-                count += p.stock;
+                count += p.Cantidad;
             }
             return count;
         }

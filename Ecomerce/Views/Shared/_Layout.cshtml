@@ -26,13 +26,13 @@
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <section class="row col-md-12">
+        <div class="col-md-8">
+            @RenderBody()
+        </div>
+        <div class="col-md-4" id="contenedorCarrito">
+        </div>
+    </section>
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
