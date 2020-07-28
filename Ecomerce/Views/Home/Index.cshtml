@@ -54,7 +54,10 @@
                     html += "<div class='col-md-3'><input onblur='EditarCarrito(" + json[i].id_producto + ",this)' class='form-control' value=" + json[i].Cantidad + "></div>";
                     html += "<div class='col-md-3'>" + json[i].SubTotal + "</div>";
                     html += "<div class='col-md-1'><a onclick='EliminarCarrito(" + json[i].id_producto + ")' href='#'>X</a></div>";
+                    html += "<div class='col-md-3'>Total: " + json[json.length - 1].total + "</div>";
+                    
                 }
+                
                 html += "<div class='col-md-3'></div>";
                 html += "<div class='col-md-2'></div>";
                 html += "<div class='col-md-3'></div>";
