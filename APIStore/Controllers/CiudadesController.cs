@@ -18,8 +18,8 @@ namespace APIStore.Controllers
         // GET: Ciudades
         public async Task<ActionResult> Index()
         {
-            var ciudades = db.Ciudades.Include(c => c.Regiones);
-            return View(await ciudades.ToListAsync());
+            List<Ciudades> lis = db.Ciudades.Where(x => x.suspencion == false).ToList();
+            return View(lis);
         }
 
         // GET: Ciudades/Details/5
@@ -49,15 +49,18 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_ciudad,id_region,nombre_ciudad,suspencion,fecha_suspencion")] Ciudades ciudades)
+        public async Task<ActionResult> Create(Ciudades ciudades)
         {
             if (ModelState.IsValid)
             {
-                db.Ciudades.Add(ciudades);
-                await db.SaveChangesAsync();
+                Ciudades ci = await db.Ciudades.Where(x => x.id_ciudad == ciudades.id_ciudad).FirstOrDefaultAsync();
+                if (ci == null)
+                {
+                    db.Ciudades.Add(ciudades);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
-
             ViewBag.id_region = new SelectList(db.Regiones, "id_region", "nombre_region", ciudades.id_region);
             return View(ciudades);
         }
@@ -83,11 +86,15 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_ciudad,id_region,nombre_ciudad,suspencion,fecha_suspencion")] Ciudades ciudades)
+        public async Task<ActionResult> Edit(Ciudades ciudades)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ciudades).State = EntityState.Modified;
+                //db.Entry(ciudades).State = EntityState.Modified;
+                Ciudades ci = db.Ciudades.Find(ciudades.id_ciudad);
+                ci.Direccion = ciudades.Direccion;
+                ci.nombre_ciudad = ciudades.nombre_ciudad;
+                ci.Regiones = ciudades.Regiones;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +123,9 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Ciudades ciudades = await db.Ciudades.FindAsync(id);
-            db.Ciudades.Remove(ciudades);
+            //db.Ciudades.Remove(ciudades);
+            ciudades.suspencion = true;
+            ciudades.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
