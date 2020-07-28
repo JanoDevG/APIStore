@@ -1,8 +1,5 @@
 ﻿@model List<ModelAPIStore.Productos>
 @{ ViewBag.Title = "Index"; }
-
-
-
 <style>
     #catalogo > div {
         display: inline-block;
@@ -13,23 +10,14 @@
         padding: 3%;
         vertical-align: top;
     }
-
-
-
         #catalogo > div > img {
             width: 100px;
             height: 100px;
         }
-
-
-
     .Imagenes {
         min-height: 250px;
     }
 </style>
-
-
-
 <script>function AgregarCarrito(id_producto) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
@@ -59,9 +47,6 @@
         xhr.open("post", "/Carro/Agregar")
         xhr.send(formData);
     }</script>
-
-
-
 <h2>Index</h2>
 <div id="catalogo">
     @{ 
@@ -79,21 +64,14 @@
                     if (i == 0)
                     {
 <div class="carousel-item active">
-    <img src="http://localhost:58124/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
+    <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
 </div> }
 else
 {
 <div class="carousel-item">
-    <img src="http://localhost:58124/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
+    <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
 </div>}
-
-
-
-
 }
-
-
-
             </div>
             <a class="carousel-control-prev" href="#carouselProducto_@p.id_producto" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -104,16 +82,12 @@ else
                 <span class="sr-only">Next</span>
             </a>
         </div>
-
     </div>
     <div>@p.nombre_producto</div>
     <div>@p.precio</div>
     <div><button id="@p.id_producto" onclick="AgregarCarrito(@p.id_producto)">Comprar/Ver</button></div>
 </div> } }
 </div>
-
-
-
 <nav aria-label="...">
     <ul class="pagination">
         @if (ViewBag.pag > 1)
@@ -132,8 +106,5 @@ else
     <a class="page-link" href="/Home/Index?pagina=@(ViewBag.pag+1)">Siguiente</a>
 </li>
 }
-
-
-
     </ul>
 </nav>
