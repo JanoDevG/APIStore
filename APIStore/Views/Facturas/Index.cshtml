@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ModelAPIStore.Factura>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Inicio";
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <table class="table">
     <tr>
@@ -53,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.Ventas.id_venta)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_factura }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_factura }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_factura })
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_factura }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_factura }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_factura })
         </td>
     </tr>
 }
