@@ -191,6 +191,7 @@
     <Compile Include="Controllers\DireccionsController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenesController.cs" />
     <Compile Include="Controllers\Lenguaje_BackendController.cs" />
     <Compile Include="Controllers\PaisesController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -284,6 +285,11 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Imagenes\Create.cshtml" />
+    <Content Include="Views\Imagenes\Delete.cshtml" />
+    <Content Include="Views\Imagenes\Details.cshtml" />
+    <Content Include="Views\Imagenes\Edit.cshtml" />
+    <Content Include="Views\Imagenes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -293,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelAPIStore\ModelAPIStore.csproj">
