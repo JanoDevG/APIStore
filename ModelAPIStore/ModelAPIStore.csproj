@@ -55,6 +55,7 @@
     <Reference Include="Microsoft.Analytics.Types" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Carritos.cs" />
     <Compile Include="Ciudades.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>
@@ -100,6 +101,7 @@
     <Compile Include="Productos.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductosCarritos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Regiones.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
