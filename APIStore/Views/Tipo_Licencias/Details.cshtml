@@ -1,0 +1,42 @@
+﻿@model ModelAPIStore.Tipo_Licencias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tipo_Licencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_licencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suspencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_suspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_suspencion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_licencia }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

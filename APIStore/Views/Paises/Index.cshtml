@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ModelAPIStore.Paises>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suspencion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_suspencion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suspencion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_suspencion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_pais }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_pais }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_pais })
+        </td>
+    </tr>
+}
+
+</table>

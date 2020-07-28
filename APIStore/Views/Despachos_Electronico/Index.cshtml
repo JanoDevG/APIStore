@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ModelAPIStore.Despachos_Electronico>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_despacho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.suspencion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_suspencion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Factura.id_factura)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_despacho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.suspencion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_suspencion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Factura.id_factura)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_despacho }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_despacho }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_despacho })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model ModelAPIStore.Despachos_Electronico
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Despachos_Electronico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_despacho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_despacho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suspencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_suspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_suspencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factura.id_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factura.id_factura)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_despacho }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

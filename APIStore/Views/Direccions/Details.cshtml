@@ -1,0 +1,66 @@
+﻿@model ModelAPIStore.Direccion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Direccion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.detalle_direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.detalle_direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.suspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.suspencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_sspencion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_sspencion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ciudades.nombre_ciudad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ciudades.nombre_ciudad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_direccion }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

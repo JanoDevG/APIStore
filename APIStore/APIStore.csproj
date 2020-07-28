@@ -184,7 +184,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CiudadesController.cs" />
+    <Compile Include="Controllers\CuentasController.cs" />
+    <Compile Include="Controllers\Despachos_ElectronicoController.cs" />
+    <Compile Include="Controllers\Detalle_VentasController.cs" />
+    <Compile Include="Controllers\DireccionsController.cs" />
+    <Compile Include="Controllers\FacturasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Lenguaje_BackendController.cs" />
+    <Compile Include="Controllers\PaisesController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\RegionesController.cs" />
+    <Compile Include="Controllers\Tipo_LicenciasController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +218,66 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Ciudades\Create.cshtml" />
+    <Content Include="Views\Ciudades\Delete.cshtml" />
+    <Content Include="Views\Ciudades\Details.cshtml" />
+    <Content Include="Views\Ciudades\Edit.cshtml" />
+    <Content Include="Views\Ciudades\Index.cshtml" />
+    <Content Include="Views\Cuentas\Create.cshtml" />
+    <Content Include="Views\Cuentas\Delete.cshtml" />
+    <Content Include="Views\Cuentas\Details.cshtml" />
+    <Content Include="Views\Cuentas\Edit.cshtml" />
+    <Content Include="Views\Cuentas\Index.cshtml" />
+    <Content Include="Views\Despachos_Electronico\Create.cshtml" />
+    <Content Include="Views\Despachos_Electronico\Delete.cshtml" />
+    <Content Include="Views\Despachos_Electronico\Details.cshtml" />
+    <Content Include="Views\Despachos_Electronico\Edit.cshtml" />
+    <Content Include="Views\Despachos_Electronico\Index.cshtml" />
+    <Content Include="Views\Detalle_Ventas\Create.cshtml" />
+    <Content Include="Views\Detalle_Ventas\Delete.cshtml" />
+    <Content Include="Views\Detalle_Ventas\Details.cshtml" />
+    <Content Include="Views\Detalle_Ventas\Edit.cshtml" />
+    <Content Include="Views\Detalle_Ventas\Index.cshtml" />
+    <Content Include="Views\Direccions\Create.cshtml" />
+    <Content Include="Views\Direccions\Delete.cshtml" />
+    <Content Include="Views\Direccions\Details.cshtml" />
+    <Content Include="Views\Direccions\Edit.cshtml" />
+    <Content Include="Views\Direccions\Index.cshtml" />
+    <Content Include="Views\Facturas\Create.cshtml" />
+    <Content Include="Views\Facturas\Delete.cshtml" />
+    <Content Include="Views\Facturas\Details.cshtml" />
+    <Content Include="Views\Facturas\Edit.cshtml" />
+    <Content Include="Views\Facturas\Index.cshtml" />
+    <Content Include="Views\Lenguaje_Backend\Create.cshtml" />
+    <Content Include="Views\Lenguaje_Backend\Delete.cshtml" />
+    <Content Include="Views\Lenguaje_Backend\Details.cshtml" />
+    <Content Include="Views\Lenguaje_Backend\Edit.cshtml" />
+    <Content Include="Views\Lenguaje_Backend\Index.cshtml" />
+    <Content Include="Views\Paises\Create.cshtml" />
+    <Content Include="Views\Paises\Delete.cshtml" />
+    <Content Include="Views\Paises\Details.cshtml" />
+    <Content Include="Views\Paises\Edit.cshtml" />
+    <Content Include="Views\Paises\Index.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Regiones\Create.cshtml" />
+    <Content Include="Views\Regiones\Delete.cshtml" />
+    <Content Include="Views\Regiones\Details.cshtml" />
+    <Content Include="Views\Regiones\Edit.cshtml" />
+    <Content Include="Views\Regiones\Index.cshtml" />
+    <Content Include="Views\Tipo_Licencias\Create.cshtml" />
+    <Content Include="Views\Tipo_Licencias\Delete.cshtml" />
+    <Content Include="Views\Tipo_Licencias\Details.cshtml" />
+    <Content Include="Views\Tipo_Licencias\Edit.cshtml" />
+    <Content Include="Views\Tipo_Licencias\Index.cshtml" />
+    <Content Include="Views\Ventas\Create.cshtml" />
+    <Content Include="Views\Ventas\Delete.cshtml" />
+    <Content Include="Views\Ventas\Details.cshtml" />
+    <Content Include="Views\Ventas\Edit.cshtml" />
+    <Content Include="Views\Ventas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -215,7 +287,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelAPIStore\ModelAPIStore.csproj">
