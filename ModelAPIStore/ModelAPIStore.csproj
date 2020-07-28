@@ -73,6 +73,9 @@
     <Compile Include="Factura.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imagenes.cs">
+      <DependentUpon>ModelAPIStore.tt</DependentUpon>
+    </Compile>
     <Compile Include="Lenguaje_Backend.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>
