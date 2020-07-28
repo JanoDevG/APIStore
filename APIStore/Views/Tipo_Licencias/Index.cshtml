@@ -14,12 +14,7 @@
         <th>
             @Html.DisplayNameFor(model => model.nombre_licencia)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.suspencion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_suspencion)
-        </th>
+
         <th></th>
     </tr>
 
@@ -28,12 +23,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.nombre_licencia)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.suspencion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_suspencion)
-        </td>
+
         <td>
             @Html.ActionLink("Editar", "Edit", new { id=item.id_licencia }) |
             @Html.ActionLink("Detalles", "Details", new { id=item.id_licencia }) |
