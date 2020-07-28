@@ -36,7 +36,7 @@ namespace ModelAPIStore
         }
         public void Editar(int id, sbyte stock)
         {
-            Productos ele = elementos.Where(x => x.id_producto == id_producto).FirstOrDefault();
+            Productos ele = elementos.Where(x => x.id_producto == id).FirstOrDefault();
             if (ele != null)
             {
                 ele.stock = stock;

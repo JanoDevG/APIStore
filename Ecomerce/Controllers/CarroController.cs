@@ -1,0 +1,40 @@
+﻿using ModelAPIStore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+
+namespace Ecomerce.Controllers
+{
+    public class CarroController : Controller
+    {
+        private APIStoreEntities1 db = new APIStoreEntities1();
+        // GET: Home
+        public ActionResult Index(int pagina = 1)
+        {
+            int mostrar = 2;
+            int saltar = (pagina - 1) * mostrar;
+            List<Productos> productos = db.Productos
+                .OrderBy(x => x.precio)
+                .Skip(saltar)
+                .Take(mostrar)
+                .ToList();
+
+
+
+            decimal total = db.Productos.Count();
+            decimal paginacion = Math.Ceiling(total / mostrar);
+            ViewBag.Paginacion = paginacion;
+            ViewBag.pag = pagina;
+            return View(productos);
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}
