@@ -1,0 +1,36 @@
+﻿@model ModelAPIStore.Detalle_Ventas
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Detalle_Ventas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nombre_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ventas.id_venta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ventas.id_venta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_detalle_venta }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

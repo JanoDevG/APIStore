@@ -1,0 +1,74 @@
+﻿@model ModelAPIStore.Productos
+
+@{
+    ViewBag.Title = "Elimianr";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_creacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lenguaje_Backend.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lenguaje_Backend.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Licencias.nombre_licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Licencias.nombre_licencia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ModelAPIStore.Cuentas>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo registro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Usuarios.nombre_usuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_creacion)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuarios.nombre_usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_cuenta }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_cuenta }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_cuenta })
+        </td>
+    </tr>
+}
+
+</table>

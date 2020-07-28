@@ -1,0 +1,34 @@
+﻿@model ModelAPIStore.Tipo_Licencias
+
+@{
+    ViewBag.Title = "Elimianr";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <h4>Tipo_Licencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_licencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_licencia)
+        </dd>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

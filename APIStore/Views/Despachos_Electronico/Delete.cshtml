@@ -1,0 +1,50 @@
+﻿@model ModelAPIStore.Despachos_Electronico
+
+@{
+    ViewBag.Title = "Elimianr";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <h4>Despachos_Electronico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_despacho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_despacho)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Factura.id_factura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factura.id_factura)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

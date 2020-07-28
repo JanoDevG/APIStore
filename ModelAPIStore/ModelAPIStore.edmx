@@ -1,0 +1,928 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="APIStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_region" Type="int" Nullable="false" />
+          <Property Name="nombre_ciudad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="usuario_supendido" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fechasuspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Despachos_Electronico">
+          <Key>
+            <PropertyRef Name="id_despacho" />
+          </Key>
+          <Property Name="id_despacho" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="id_factura" Type="int" Nullable="false" />
+          <Property Name="fecha_despacho" Type="datetime" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Detalle_Ventas">
+          <Key>
+            <PropertyRef Name="id_detalle_venta" />
+          </Key>
+          <Property Name="id_detalle_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="id_venta" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id_direccion" />
+          </Key>
+          <Property Name="id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_ciudad" Type="int" Nullable="false" />
+          <Property Name="calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="numero" Type="int" Nullable="false" />
+          <Property Name="detalle_direccion" Type="varchar" MaxLength="100" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_sspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_venta" Type="int" Nullable="false" />
+          <Property Name="fecha_facturacion" Type="date" Nullable="false" />
+          <Property Name="id_direccion" Type="int" Nullable="false" />
+          <Property Name="iva_actual" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Lenguaje_Backend">
+          <Key>
+            <PropertyRef Name="id_lenguaje" />
+          </Key>
+          <Property Name="id_lenguaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="id_pais" />
+          </Key>
+          <Property Name="id_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_pais" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="id_lenguaje" Type="int" Nullable="false" />
+          <Property Name="id_licencia" Type="int" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="fecha_creacion" Type="date" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Regiones">
+          <Key>
+            <PropertyRef Name="id_region" />
+          </Key>
+          <Property Name="id_region" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_region" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_pais" Type="int" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tipo_Licencias">
+          <Key>
+            <PropertyRef Name="id_licencia" />
+          </Key>
+          <Property Name="id_licencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_licencia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="apellido_usuario" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="rut_usuario" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="giro_empresa" Type="varchar" MaxLength="40" />
+          <Property Name="rut_empresa" Type="varchar" MaxLength="10" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_susencion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="id_producto" Type="int" Nullable="false" />
+          <Property Name="fecha_venta" Type="date" Nullable="false" />
+          <Property Name="suspencion" Type="bit" />
+          <Property Name="fecha_suspencion" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Ciudades_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="id_region" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="id_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despachos_Electronico_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="Despachos_Electronico" Type="Self.Despachos_Electronico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="Despachos_Electronico">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Ventas_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Detalle_Ventas" Type="Self.Detalle_Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Detalle_Ventas">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Ventas_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Detalle_Ventas" Type="Self.Detalle_Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Detalle_Ventas">
+              <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Ciudades">
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Lenguaje_Backend">
+          <End Role="Lenguaje_Backend" Type="Self.Lenguaje_Backend" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenguaje_Backend">
+              <PropertyRef Name="id_lenguaje" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_lenguaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Tipo_Licencias">
+          <End Role="Tipo_Licencias" Type="Self.Tipo_Licencias" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Licencias">
+              <PropertyRef Name="id_licencia" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_licencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Regiones_Paises">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="Regiones">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APIStoreModelStoreContainer">
+          <EntitySet Name="Ciudades" EntityType="Self.Ciudades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Despachos_Electronico" EntityType="Self.Despachos_Electronico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Ventas" EntityType="Self.Detalle_Ventas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lenguaje_Backend" EntityType="Self.Lenguaje_Backend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Regiones" EntityType="Self.Regiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Licencias" EntityType="Self.Tipo_Licencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Ciudades_Regiones" Association="Self.FK_Ciudades_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Usuarios" Association="Self.FK_Cuentas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despachos_Electronico_Factura" Association="Self.FK_Despachos_Electronico_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Despachos_Electronico" EntitySet="Despachos_Electronico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Ventas_Productos" Association="Self.FK_Detalle_Ventas_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalle_Ventas" EntitySet="Detalle_Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Ventas_Ventas" Association="Self.FK_Detalle_Ventas_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Detalle_Ventas" EntitySet="Detalle_Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Ciudades" Association="Self.FK_Direccion_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Direccion" Association="Self.FK_Factura_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Ventas" Association="Self.FK_Factura_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Lenguaje_Backend" Association="Self.FK_Productos_Lenguaje_Backend">
+            <End Role="Lenguaje_Backend" EntitySet="Lenguaje_Backend" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Tipo_Licencias" Association="Self.FK_Productos_Tipo_Licencias">
+            <End Role="Tipo_Licencias" EntitySet="Tipo_Licencias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Regiones_Paises" Association="Self.FK_Regiones_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Regiones" EntitySet="Regiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APIStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="id_ciudad" />
+          </Key>
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_region" Type="Int32" Nullable="false" />
+          <Property Name="nombre_ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Regiones" Relationship="Self.FK_Ciudades_Regiones" FromRole="Ciudades" ToRole="Regiones" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Ciudades" FromRole="Ciudades" ToRole="Direccion" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usuario_supendido" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fechasuspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Cuentas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Despachos_Electronico">
+          <Key>
+            <PropertyRef Name="id_despacho" />
+          </Key>
+          <Property Name="id_despacho" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="id_factura" Type="Int32" Nullable="false" />
+          <Property Name="fecha_despacho" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Despachos_Electronico_Factura" FromRole="Despachos_Electronico" ToRole="Factura" />
+        </EntityType>
+        <EntityType Name="Detalle_Ventas">
+          <Key>
+            <PropertyRef Name="id_detalle_venta" />
+          </Key>
+          <Property Name="id_detalle_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="id_venta" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Detalle_Ventas_Productos" FromRole="Detalle_Ventas" ToRole="Productos" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_Detalle_Ventas_Ventas" FromRole="Detalle_Ventas" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id_direccion" />
+          </Key>
+          <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_ciudad" Type="Int32" Nullable="false" />
+          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="Int32" Nullable="false" />
+          <Property Name="detalle_direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_sspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ciudades" Relationship="Self.FK_Direccion_Ciudades" FromRole="Direccion" ToRole="Ciudades" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Direccion" FromRole="Direccion" ToRole="Factura" />
+        </EntityType>
+        <EntityType Name="Factura">
+          <Key>
+            <PropertyRef Name="id_factura" />
+          </Key>
+          <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_venta" Type="Int32" Nullable="false" />
+          <Property Name="fecha_facturacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_direccion" Type="Int32" Nullable="false" />
+          <Property Name="iva_actual" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Despachos_Electronico" Relationship="Self.FK_Despachos_Electronico_Factura" FromRole="Factura" ToRole="Despachos_Electronico" />
+          <NavigationProperty Name="Direccion" Relationship="Self.FK_Factura_Direccion" FromRole="Factura" ToRole="Direccion" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_Factura_Ventas" FromRole="Factura" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Lenguaje_Backend">
+          <Key>
+            <PropertyRef Name="id_lenguaje" />
+          </Key>
+          <Property Name="id_lenguaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Lenguaje_Backend" FromRole="Lenguaje_Backend" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="id_pais" />
+          </Key>
+          <Property Name="id_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Regiones" Relationship="Self.FK_Regiones_Paises" FromRole="Paises" ToRole="Regiones" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_producto" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_lenguaje" Type="Int32" Nullable="false" />
+          <Property Name="id_licencia" Type="Int32" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Detalle_Ventas" Relationship="Self.FK_Detalle_Ventas_Productos" FromRole="Productos" ToRole="Detalle_Ventas" />
+          <NavigationProperty Name="Lenguaje_Backend" Relationship="Self.FK_Productos_Lenguaje_Backend" FromRole="Productos" ToRole="Lenguaje_Backend" />
+          <NavigationProperty Name="Tipo_Licencias" Relationship="Self.FK_Productos_Tipo_Licencias" FromRole="Productos" ToRole="Tipo_Licencias" />
+        </EntityType>
+        <EntityType Name="Regiones">
+          <Key>
+            <PropertyRef Name="id_region" />
+          </Key>
+          <Property Name="id_region" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_pais" Type="Int32" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Ciudades" Relationship="Self.FK_Ciudades_Regiones" FromRole="Regiones" ToRole="Ciudades" />
+          <NavigationProperty Name="Paises" Relationship="Self.FK_Regiones_Paises" FromRole="Regiones" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="Tipo_Licencias">
+          <Key>
+            <PropertyRef Name="id_licencia" />
+          </Key>
+          <Property Name="id_licencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_licencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Tipo_Licencias" FromRole="Tipo_Licencias" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_usuario" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rut_usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="giro_empresa" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="rut_empresa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_susencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Usuarios" ToRole="Cuentas" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="id_venta" />
+          </Key>
+          <Property Name="id_venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_producto" Type="Int32" Nullable="false" />
+          <Property Name="fecha_venta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Detalle_Ventas" Relationship="Self.FK_Detalle_Ventas_Ventas" FromRole="Ventas" ToRole="Detalle_Ventas" />
+          <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Ventas" FromRole="Ventas" ToRole="Factura" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
+        </EntityType>
+        <Association Name="FK_Ciudades_Regiones">
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Regiones">
+              <PropertyRef Name="id_region" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="id_region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Direccion_Ciudades">
+          <End Role="Ciudades" Type="Self.Ciudades" Multiplicity="1" />
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="id_ciudad" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="id_ciudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cuentas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Cuentas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Despachos_Electronico_Factura">
+          <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+          <End Role="Despachos_Electronico" Type="Self.Despachos_Electronico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factura">
+              <PropertyRef Name="id_factura" />
+            </Principal>
+            <Dependent Role="Despachos_Electronico">
+              <PropertyRef Name="id_factura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Ventas_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="Detalle_Ventas" Type="Self.Detalle_Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="Detalle_Ventas">
+              <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detalle_Ventas_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Detalle_Ventas" Type="Self.Detalle_Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Detalle_Ventas">
+              <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Direccion">
+          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="id_direccion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factura_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="id_venta" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="id_venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Lenguaje_Backend">
+          <End Role="Lenguaje_Backend" Type="Self.Lenguaje_Backend" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lenguaje_Backend">
+              <PropertyRef Name="id_lenguaje" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_lenguaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Regiones_Paises">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Regiones" Type="Self.Regiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="Regiones">
+              <PropertyRef Name="id_pais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_Tipo_Licencias">
+          <End Role="Tipo_Licencias" Type="Self.Tipo_Licencias" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Licencias">
+              <PropertyRef Name="id_licencia" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="id_licencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventas_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APIStoreEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ciudades" EntityType="Self.Ciudades" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="Despachos_Electronico" EntityType="Self.Despachos_Electronico" />
+          <EntitySet Name="Detalle_Ventas" EntityType="Self.Detalle_Ventas" />
+          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+          <EntitySet Name="Factura" EntityType="Self.Factura" />
+          <EntitySet Name="Lenguaje_Backend" EntityType="Self.Lenguaje_Backend" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Regiones" EntityType="Self.Regiones" />
+          <EntitySet Name="Tipo_Licencias" EntityType="Self.Tipo_Licencias" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+          <AssociationSet Name="FK_Ciudades_Regiones" Association="Self.FK_Ciudades_Regiones">
+            <End Role="Regiones" EntitySet="Regiones" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Direccion_Ciudades" Association="Self.FK_Direccion_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cuentas_Usuarios" Association="Self.FK_Cuentas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cuentas" EntitySet="Cuentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Despachos_Electronico_Factura" Association="Self.FK_Despachos_Electronico_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Despachos_Electronico" EntitySet="Despachos_Electronico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Ventas_Productos" Association="Self.FK_Detalle_Ventas_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Detalle_Ventas" EntitySet="Detalle_Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Ventas_Ventas" Association="Self.FK_Detalle_Ventas_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Detalle_Ventas" EntitySet="Detalle_Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Direccion" Association="Self.FK_Factura_Direccion">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Ventas" Association="Self.FK_Factura_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Lenguaje_Backend" Association="Self.FK_Productos_Lenguaje_Backend">
+            <End Role="Lenguaje_Backend" EntitySet="Lenguaje_Backend" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Regiones_Paises" Association="Self.FK_Regiones_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Regiones" EntitySet="Regiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Tipo_Licencias" Association="Self.FK_Productos_Tipo_Licencias">
+            <End Role="Tipo_Licencias" EntitySet="Tipo_Licencias" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="APIStoreModelStoreContainer" CdmEntityContainer="APIStoreEntities1">
+          <EntitySetMapping Name="Ciudades">
+            <EntityTypeMapping TypeName="APIStoreModel.Ciudades">
+              <MappingFragment StoreEntitySet="Ciudades">
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="id_region" ColumnName="id_region" />
+                <ScalarProperty Name="nombre_ciudad" ColumnName="nombre_ciudad" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="APIStoreModel.Cuentas">
+              <MappingFragment StoreEntitySet="Cuentas">
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usuario_supendido" ColumnName="usuario_supendido" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fechasuspencion" ColumnName="fechasuspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Despachos_Electronico">
+            <EntityTypeMapping TypeName="APIStoreModel.Despachos_Electronico">
+              <MappingFragment StoreEntitySet="Despachos_Electronico">
+                <ScalarProperty Name="id_despacho" ColumnName="id_despacho" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+                <ScalarProperty Name="fecha_despacho" ColumnName="fecha_despacho" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Ventas">
+            <EntityTypeMapping TypeName="APIStoreModel.Detalle_Ventas">
+              <MappingFragment StoreEntitySet="Detalle_Ventas">
+                <ScalarProperty Name="id_detalle_venta" ColumnName="id_detalle_venta" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="APIStoreModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="id_ciudad" ColumnName="id_ciudad" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="detalle_direccion" ColumnName="detalle_direccion" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_sspencion" ColumnName="fecha_sspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factura">
+            <EntityTypeMapping TypeName="APIStoreModel.Factura">
+              <MappingFragment StoreEntitySet="Factura">
+                <ScalarProperty Name="id_factura" ColumnName="id_factura" />
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="fecha_facturacion" ColumnName="fecha_facturacion" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+                <ScalarProperty Name="iva_actual" ColumnName="iva_actual" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lenguaje_Backend">
+            <EntityTypeMapping TypeName="APIStoreModel.Lenguaje_Backend">
+              <MappingFragment StoreEntitySet="Lenguaje_Backend">
+                <ScalarProperty Name="id_lenguaje" ColumnName="id_lenguaje" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="APIStoreModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="nombre_pais" ColumnName="nombre_pais" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="APIStoreModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="id_lenguaje" ColumnName="id_lenguaje" />
+                <ScalarProperty Name="id_licencia" ColumnName="id_licencia" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regiones">
+            <EntityTypeMapping TypeName="APIStoreModel.Regiones">
+              <MappingFragment StoreEntitySet="Regiones">
+                <ScalarProperty Name="id_region" ColumnName="id_region" />
+                <ScalarProperty Name="nombre_region" ColumnName="nombre_region" />
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Licencias">
+            <EntityTypeMapping TypeName="APIStoreModel.Tipo_Licencias">
+              <MappingFragment StoreEntitySet="Tipo_Licencias">
+                <ScalarProperty Name="id_licencia" ColumnName="id_licencia" />
+                <ScalarProperty Name="nombre_licencia" ColumnName="nombre_licencia" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="APIStoreModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="apellido_usuario" ColumnName="apellido_usuario" />
+                <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
+                <ScalarProperty Name="giro_empresa" ColumnName="giro_empresa" />
+                <ScalarProperty Name="rut_empresa" ColumnName="rut_empresa" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_susencion" ColumnName="fecha_susencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="APIStoreModel.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="id_venta" ColumnName="id_venta" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="fecha_venta" ColumnName="fecha_venta" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ModelAPIStore.Tipo_Licencias>
+
+@{
+    ViewBag.Title = "Inicio";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo registro", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_licencia)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_licencia)
+        </td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.id_licencia }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id_licencia }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id_licencia })
+        </td>
+    </tr>
+}
+
+</table>

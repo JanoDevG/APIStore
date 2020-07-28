@@ -1,0 +1,42 @@
+﻿@model ModelAPIStore.Detalle_Ventas
+
+@{
+    ViewBag.Title = "Elimianr";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <h4>Detalle_Ventas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Productos.nombre_producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Productos.nombre_producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ventas.id_venta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ventas.id_venta)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

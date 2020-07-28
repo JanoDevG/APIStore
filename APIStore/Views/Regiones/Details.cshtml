@@ -1,0 +1,36 @@
+﻿@model ModelAPIStore.Regiones
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Regiones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_region)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.nombre_pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.nombre_pais)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_region }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>

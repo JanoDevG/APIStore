@@ -1,0 +1,42 @@
+﻿@model ModelAPIStore.Regiones
+
+@{
+    ViewBag.Title = "Elimianr";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro de eliminar el registro?</h3>
+<div>
+    <h4>Regiones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_region)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paises.nombre_pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paises.nombre_pais)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

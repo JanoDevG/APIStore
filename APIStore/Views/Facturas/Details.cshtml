@@ -1,0 +1,52 @@
+﻿@model ModelAPIStore.Factura
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_facturacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_facturacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iva_actual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iva_actual)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion.calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion.calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ventas.id_venta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ventas.id_venta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id_factura }) |
+    @Html.ActionLink("Volver a la lista", "Index")
+</p>
