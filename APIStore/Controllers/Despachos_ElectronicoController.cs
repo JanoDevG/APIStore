@@ -1,13 +1,12 @@
-﻿using System;
+﻿using ModelAPIStore;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using ModelAPIStore;
 
 namespace APIStore.Controllers
 {
@@ -18,8 +17,8 @@ namespace APIStore.Controllers
         // GET: Despachos_Electronico
         public async Task<ActionResult> Index()
         {
-            var despachos_Electronico = db.Despachos_Electronico.Include(d => d.Factura);
-            return View(await despachos_Electronico.ToListAsync());
+            List<Despachos_Electronico> listaUsu = db.Despachos_Electronico.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Despachos_Electronico/Details/5
@@ -49,12 +48,17 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_despacho,estado,id_factura,fecha_despacho,suspencion,fecha_suspencion")] Despachos_Electronico despachos_Electronico)
+        public async Task<ActionResult> Create(Despachos_Electronico despachos_Electronico)
         {
             if (ModelState.IsValid)
             {
-                db.Despachos_Electronico.Add(despachos_Electronico);
-                await db.SaveChangesAsync();
+                Despachos_Electronico des = await db.Despachos_Electronico.Where(x => x.id_despacho == despachos_Electronico.id_despacho).FirstOrDefaultAsync();
+                if (des == null)
+                {
+                    db.Despachos_Electronico.Add(despachos_Electronico);
+                    await db.SaveChangesAsync();
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -83,11 +87,13 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_despacho,estado,id_factura,fecha_despacho,suspencion,fecha_suspencion")] Despachos_Electronico despachos_Electronico)
+        public async Task<ActionResult> Edit(Despachos_Electronico despachos_Electronico)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(despachos_Electronico).State = EntityState.Modified;
+                Despachos_Electronico des = db.Despachos_Electronico.Find(despachos_Electronico.id_despacho);
+                des.estado = despachos_Electronico.estado;
+                des.fecha_despacho = despachos_Electronico.fecha_despacho;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +122,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Despachos_Electronico despachos_Electronico = await db.Despachos_Electronico.FindAsync(id);
-            db.Despachos_Electronico.Remove(despachos_Electronico);
+            despachos_Electronico.suspencion = false;
+            despachos_Electronico.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

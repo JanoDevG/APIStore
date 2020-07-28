@@ -18,7 +18,8 @@ namespace APIStore.Controllers
         // GET: Paises
         public async Task<ActionResult> Index()
         {
-            return View(await db.Paises.ToListAsync());
+            List<Paises> listaUsu = db.Paises.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Paises/Details/5
@@ -47,12 +48,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_pais,nombre_pais,suspencion,fecha_suspencion")] Paises paises)
+        public async Task<ActionResult> Create(Paises paises)
         {
             if (ModelState.IsValid)
             {
-                db.Paises.Add(paises);
-                await db.SaveChangesAsync();
+                Paises pa = await db.Paises.Where(x => x.id_pais == paises.id_pais).FirstOrDefaultAsync();
+                if (pa == null)
+                {
+                    db.Paises.Add(paises);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -79,11 +84,12 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_pais,nombre_pais,suspencion,fecha_suspencion")] Paises paises)
+        public async Task<ActionResult> Edit(Paises paises)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(paises).State = EntityState.Modified;
+                Paises pa = db.Paises.Find(paises.id_pais);
+                pa.nombre_pais = paises.nombre_pais;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -111,7 +117,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Paises paises = await db.Paises.FindAsync(id);
-            db.Paises.Remove(paises);
+            paises.suspencion = true;
+            paises.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

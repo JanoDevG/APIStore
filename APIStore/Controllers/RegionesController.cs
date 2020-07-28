@@ -18,8 +18,8 @@ namespace APIStore.Controllers
         // GET: Regiones
         public async Task<ActionResult> Index()
         {
-            var regiones = db.Regiones.Include(r => r.Paises);
-            return View(await regiones.ToListAsync());
+            List<Regiones> listaUsu = db.Regiones.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Regiones/Details/5
@@ -49,12 +49,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_region,nombre_region,id_pais,suspencion,fecha_suspencion")] Regiones regiones)
+        public async Task<ActionResult> Create(Regiones regiones)
         {
             if (ModelState.IsValid)
             {
-                db.Regiones.Add(regiones);
-                await db.SaveChangesAsync();
+                Regiones reg = await db.Regiones.Where(x => x.id_region == regiones.id_region).FirstOrDefaultAsync();
+                if (reg == null)
+                {
+                    db.Regiones.Add(regiones);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,11 +87,12 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_region,nombre_region,id_pais,suspencion,fecha_suspencion")] Regiones regiones)
+        public async Task<ActionResult> Edit(Regiones regiones)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(regiones).State = EntityState.Modified;
+                Regiones reg = db.Regiones.Find(regiones.id_region);
+                reg.nombre_region = regiones.nombre_region;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +121,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Regiones regiones = await db.Regiones.FindAsync(id);
-            db.Regiones.Remove(regiones);
+            regiones.suspencion = true;
+            regiones.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

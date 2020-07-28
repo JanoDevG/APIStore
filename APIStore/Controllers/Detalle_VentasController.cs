@@ -1,13 +1,11 @@
-﻿using System;
+﻿using ModelAPIStore;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using ModelAPIStore;
 
 namespace APIStore.Controllers
 {
@@ -18,8 +16,8 @@ namespace APIStore.Controllers
         // GET: Detalle_Ventas
         public async Task<ActionResult> Index()
         {
-            var detalle_Ventas = db.Detalle_Ventas.Include(d => d.Productos).Include(d => d.Ventas);
-            return View(await detalle_Ventas.ToListAsync());
+            List<Detalle_Ventas> listaUsu = db.Detalle_Ventas.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Detalle_Ventas/Details/5
@@ -50,12 +48,17 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_detalle_venta,id_producto,id_venta,suspencion,fecha_suspencion")] Detalle_Ventas detalle_Ventas)
+        public async Task<ActionResult> Create(Detalle_Ventas detalle_Ventas)
         {
             if (ModelState.IsValid)
             {
-                db.Detalle_Ventas.Add(detalle_Ventas);
-                await db.SaveChangesAsync();
+                Detalle_Ventas det = await db.Detalle_Ventas.Where(x => x.id_detalle_venta == detalle_Ventas.id_detalle_venta).FirstOrDefaultAsync();
+                if (det == null)
+                {
+                    db.Detalle_Ventas.Add(detalle_Ventas);
+                    await db.SaveChangesAsync();
+                }
+                
                 return RedirectToAction("Index");
             }
 
@@ -86,8 +89,9 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_detalle_venta,id_producto,id_venta,suspencion,fecha_suspencion")] Detalle_Ventas detalle_Ventas)
+        public async Task<ActionResult> Edit(Detalle_Ventas detalle_Ventas)
         {
+            //Al ser tabla intermediaria entre dos (para evitar relación M-M... no se modifica código al no tener datos propios más que eliminación lógica)
             if (ModelState.IsValid)
             {
                 db.Entry(detalle_Ventas).State = EntityState.Modified;
@@ -120,7 +124,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Detalle_Ventas detalle_Ventas = await db.Detalle_Ventas.FindAsync(id);
-            db.Detalle_Ventas.Remove(detalle_Ventas);
+            detalle_Ventas.suspencion = true;
+            detalle_Ventas.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -18,7 +18,8 @@ namespace APIStore.Controllers
         // GET: Lenguaje_Backend
         public async Task<ActionResult> Index()
         {
-            return View(await db.Lenguaje_Backend.ToListAsync());
+            List<Lenguaje_Backend> listaUsu = db.Lenguaje_Backend.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Lenguaje_Backend/Details/5
@@ -47,12 +48,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_lenguaje,nombre,description,suspencion,fecha_suspencion")] Lenguaje_Backend lenguaje_Backend)
+        public async Task<ActionResult> Create(Lenguaje_Backend lenguaje_Backend)
         {
             if (ModelState.IsValid)
             {
-                db.Lenguaje_Backend.Add(lenguaje_Backend);
-                await db.SaveChangesAsync();
+                Lenguaje_Backend leg = await db.Lenguaje_Backend.Where(x => x.id_lenguaje == lenguaje_Backend.id_lenguaje).FirstOrDefaultAsync();
+                if (leg == null)
+                {
+                    db.Lenguaje_Backend.Add(lenguaje_Backend);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -79,11 +84,13 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_lenguaje,nombre,description,suspencion,fecha_suspencion")] Lenguaje_Backend lenguaje_Backend)
+        public async Task<ActionResult> Edit(Lenguaje_Backend lenguaje_Backend)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lenguaje_Backend).State = EntityState.Modified;
+                Lenguaje_Backend leg = db.Lenguaje_Backend.Find(lenguaje_Backend.id_lenguaje);
+                leg.description = lenguaje_Backend.description;
+                leg.nombre = lenguaje_Backend.nombre;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -111,7 +118,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Lenguaje_Backend lenguaje_Backend = await db.Lenguaje_Backend.FindAsync(id);
-            db.Lenguaje_Backend.Remove(lenguaje_Backend);
+            lenguaje_Backend.suspencion = true;
+            lenguaje_Backend.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

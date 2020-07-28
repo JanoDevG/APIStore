@@ -18,8 +18,8 @@ namespace APIStore.Controllers
         // GET: Productos
         public async Task<ActionResult> Index()
         {
-            var productos = db.Productos.Include(p => p.Lenguaje_Backend).Include(p => p.Tipo_Licencias);
-            return View(await productos.ToListAsync());
+            List<Productos> listaUsu = db.Productos.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Productos/Details/5
@@ -50,12 +50,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_producto,nombre_producto,id_lenguaje,id_licencia,stock,fecha_creacion,precio,suspencion,fecha_suspencion")] Productos productos)
+        public async Task<ActionResult> Create(Productos productos)
         {
             if (ModelState.IsValid)
             {
-                db.Productos.Add(productos);
-                await db.SaveChangesAsync();
+                Productos pro = await db.Productos.Where(x => x.id_producto == productos.id_producto).FirstOrDefaultAsync();
+                if (pro == null)
+                {
+                    db.Productos.Add(productos);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -86,11 +90,15 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_producto,nombre_producto,id_lenguaje,id_licencia,stock,fecha_creacion,precio,suspencion,fecha_suspencion")] Productos productos)
+        public async Task<ActionResult> Edit(Productos productos)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(productos).State = EntityState.Modified;
+                Productos pro = db.Productos.Find(productos.id_producto);
+                pro.nombre_producto = productos.nombre_producto;
+                pro.stock = productos.stock;
+                pro.fecha_creacion = productos.fecha_creacion;
+                pro.precio = productos.precio;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -120,7 +128,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Productos productos = await db.Productos.FindAsync(id);
-            db.Productos.Remove(productos);
+            productos.suspencion = true;
+            productos.fecha_creacion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

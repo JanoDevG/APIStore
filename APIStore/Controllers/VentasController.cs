@@ -18,8 +18,8 @@ namespace APIStore.Controllers
         // GET: Ventas
         public async Task<ActionResult> Index()
         {
-            var ventas = db.Ventas.Include(v => v.Usuarios);
-            return View(await ventas.ToListAsync());
+            List<Ventas> staUsu = db.Ventas.Where(x =>  x.suspencion == false).ToList();
+            return View(staUsu);
         }
 
         // GET: Ventas/Details/5
@@ -49,12 +49,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_venta,id_usuario,id_producto,fecha_venta,suspencion,fecha_suspencion")] Ventas ventas)
+        public async Task<ActionResult> Create(Ventas ventas)
         {
             if (ModelState.IsValid)
             {
-                db.Ventas.Add(ventas);
-                await db.SaveChangesAsync();
+                Ventas ven = await db.Ventas.Where(x => x.id_venta == ventas.id_venta).FirstOrDefaultAsync();
+                if (ven == null)
+                {
+                    db.Ventas.Add(ventas);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,11 +87,12 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_venta,id_usuario,id_producto,fecha_venta,suspencion,fecha_suspencion")] Ventas ventas)
+        public async Task<ActionResult> Edit(Ventas ventas)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ventas).State = EntityState.Modified;
+                Ventas ven = db.Ventas.Find(ventas.id_venta);
+                ven.fecha_venta = ventas.fecha_venta;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +121,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Ventas ventas = await db.Ventas.FindAsync(id);
-            db.Ventas.Remove(ventas);
+            ventas.suspencion = true;
+            ventas.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

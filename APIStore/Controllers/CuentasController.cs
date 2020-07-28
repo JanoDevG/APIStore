@@ -16,10 +16,10 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Cuentas
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var cuentas = db.Cuentas.Include(c => c.Usuarios);
-            return View(await cuentas.ToListAsync());
+            List<Cuentas> lis = db.Cuentas.Where(x => x.suspencion == false).ToList();
+            return View(lis);
         }
 
         // GET: Cuentas/Details/5
@@ -49,12 +49,17 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_cuenta,id_usuario,correo,password,usuario_supendido,fecha_suspencion,fecha_creacion,suspencion,fechasuspencion")] Cuentas cuentas)
+        public async Task<ActionResult> Create(Cuentas cuentas)
         {
             if (ModelState.IsValid)
             {
-                db.Cuentas.Add(cuentas);
-                await db.SaveChangesAsync();
+                Cuentas ci = await db.Cuentas.Where(x => x.id_cuenta == cuentas.id_cuenta).FirstOrDefaultAsync();
+                cuentas.fecha_creacion = DateTime.Now;
+                if (ci == null)
+                {
+                    db.Cuentas.Add(cuentas);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,11 +88,13 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_cuenta,id_usuario,correo,password,usuario_supendido,fecha_suspencion,fecha_creacion,suspencion,fechasuspencion")] Cuentas cuentas)
+        public async Task<ActionResult> Edit(Cuentas cuentas)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cuentas).State = EntityState.Modified;
+                Cuentas cu = await db.Cuentas.FindAsync(cuentas.id_cuenta);
+                cu.correo = cuentas.correo;
+                cu.password = cuentas.password;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +123,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Cuentas cuentas = await db.Cuentas.FindAsync(id);
-            db.Cuentas.Remove(cuentas);
+            cuentas.suspencion = true;
+            cuentas.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

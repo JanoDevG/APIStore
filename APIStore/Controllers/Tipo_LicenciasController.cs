@@ -18,7 +18,8 @@ namespace APIStore.Controllers
         // GET: Tipo_Licencias
         public async Task<ActionResult> Index()
         {
-            return View(await db.Tipo_Licencias.ToListAsync());
+            List<Tipo_Licencias> listaUsu = db.Tipo_Licencias.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Tipo_Licencias/Details/5
@@ -47,12 +48,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_licencia,nombre_licencia,suspencion,fecha_suspencion")] Tipo_Licencias tipo_Licencias)
+        public async Task<ActionResult> Create(Tipo_Licencias tipo_Licencias)
         {
             if (ModelState.IsValid)
             {
-                db.Tipo_Licencias.Add(tipo_Licencias);
-                await db.SaveChangesAsync();
+                Tipo_Licencias tip = await db.Tipo_Licencias.Where(x => x.id_licencia == tipo_Licencias.id_licencia).FirstOrDefaultAsync();
+                if (tip == null)
+                {
+                    db.Tipo_Licencias.Add(tipo_Licencias);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -79,11 +84,12 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_licencia,nombre_licencia,suspencion,fecha_suspencion")] Tipo_Licencias tipo_Licencias)
+        public async Task<ActionResult> Edit(Tipo_Licencias tipo_Licencias)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipo_Licencias).State = EntityState.Modified;
+                Tipo_Licencias lis = db.Tipo_Licencias.Find(tipo_Licencias.id_licencia);
+                lis.nombre_licencia = tipo_Licencias.nombre_licencia;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -111,7 +117,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Tipo_Licencias tipo_Licencias = await db.Tipo_Licencias.FindAsync(id);
-            db.Tipo_Licencias.Remove(tipo_Licencias);
+            tipo_Licencias.suspencion = true;
+            tipo_Licencias.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

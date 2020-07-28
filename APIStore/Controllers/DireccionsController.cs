@@ -16,10 +16,10 @@ namespace APIStore.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
 
         // GET: Direccions
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var direccion = db.Direccion.Include(d => d.Ciudades);
-            return View(await direccion.ToListAsync());
+            List<Direccion> listaUsu = db.Direccion.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Direccions/Details/5
@@ -49,12 +49,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_direccion,id_ciudad,calle,numero,detalle_direccion,suspencion,fecha_sspencion")] Direccion direccion)
+        public async Task<ActionResult> Create(Direccion direccion)
         {
             if (ModelState.IsValid)
             {
-                db.Direccion.Add(direccion);
-                await db.SaveChangesAsync();
+                Direccion dir = await db.Direccion.Where(x => x.id_direccion == direccion.id_direccion).FirstOrDefaultAsync();
+                if (dir == null)
+                {
+                    db.Direccion.Add(direccion);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -83,11 +87,14 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_direccion,id_ciudad,calle,numero,detalle_direccion,suspencion,fecha_sspencion")] Direccion direccion)
+        public async Task<ActionResult> Edit(Direccion direccion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(direccion).State = EntityState.Modified;
+                Direccion dir = db.Direccion.Find(direccion.id_direccion);
+                dir.calle = direccion.calle;
+                dir.detalle_direccion = direccion.detalle_direccion;
+                dir.numero = direccion.numero;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -116,7 +123,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Direccion direccion = await db.Direccion.FindAsync(id);
-            db.Direccion.Remove(direccion);
+            direccion.suspencion = true;
+            direccion.fecha_sspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

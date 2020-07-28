@@ -18,8 +18,8 @@ namespace APIStore.Controllers
         // GET: Facturas
         public async Task<ActionResult> Index()
         {
-            var factura = db.Factura.Include(f => f.Direccion).Include(f => f.Ventas);
-            return View(await factura.ToListAsync());
+            List<Factura> listaUsu = db.Factura.Where(x => x.suspencion == false).ToList();
+            return View(listaUsu);
         }
 
         // GET: Facturas/Details/5
@@ -50,12 +50,16 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id_factura,id_venta,fecha_facturacion,id_direccion,iva_actual,suspencion,fecha_suspencion")] Factura factura)
+        public async Task<ActionResult> Create(Factura factura)
         {
             if (ModelState.IsValid)
             {
-                db.Factura.Add(factura);
-                await db.SaveChangesAsync();
+                Factura fac = await db.Factura.Where(x => x.id_factura == factura.id_factura).FirstOrDefaultAsync();
+                if (fac == null)
+                {
+                    db.Factura.Add(factura);
+                    await db.SaveChangesAsync();
+                }
                 return RedirectToAction("Index");
             }
 
@@ -86,11 +90,13 @@ namespace APIStore.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id_factura,id_venta,fecha_facturacion,id_direccion,iva_actual,suspencion,fecha_suspencion")] Factura factura)
+        public async Task<ActionResult> Edit(Factura factura)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(factura).State = EntityState.Modified;
+                Factura fac = db.Factura.Find(factura.id_factura);
+                fac.fecha_facturacion = factura.fecha_facturacion;
+                fac.iva_actual = factura.iva_actual;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -120,7 +126,8 @@ namespace APIStore.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Factura factura = await db.Factura.FindAsync(id);
-            db.Factura.Remove(factura);
+            factura.suspencion = true;
+            factura.fecha_suspencion = DateTime.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
