@@ -24,12 +24,12 @@
         <EntityTypeShape EntityType="APIStoreModel.Imagenes" Width="1.5" PointX="5.25" PointY="16.375" />
         <AssociationConnector Association="APIStoreModel.FK_Imagenes_Productos" />
         <EntityTypeShape EntityType="APIStoreModel.Usuarios" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="APIStoreModel.Ventas" Width="1.5" PointX="3" PointY="8.625" />
-        <AssociationConnector Association="APIStoreModel.FK_Factura_Ventas" />
-        <AssociationConnector Association="APIStoreModel.FK_Ventas_Usuarios" />
         <EntityTypeShape EntityType="APIStoreModel.Detalle_Ventas" Width="1.5" PointX="5.25" PointY="11.5" />
         <AssociationConnector Association="APIStoreModel.FK_Detalle_Ventas_Productos" />
+        <EntityTypeShape EntityType="APIStoreModel.Ventas" Width="1.5" PointX="3" PointY="8.75" />
         <AssociationConnector Association="APIStoreModel.FK_Detalle_Ventas_Ventas" />
+        <AssociationConnector Association="APIStoreModel.FK_Factura_Ventas" />
+        <AssociationConnector Association="APIStoreModel.FK_Ventas_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

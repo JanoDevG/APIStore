@@ -17,22 +17,21 @@ namespace ModelAPIStore
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ventas()
         {
-            this.Factura = new HashSet<Factura>();
             this.Detalle_Ventas = new HashSet<Detalle_Ventas>();
+            this.Factura = new HashSet<Factura>();
         }
     
         public int id_venta { get; set; }
         public int id_usuario { get; set; }
-        public int id_producto { get; set; }
         public System.DateTime fecha_venta { get; set; }
         public Nullable<bool> suspencion { get; set; }
         public Nullable<System.DateTime> fecha_suspencion { get; set; }
         public int monto_total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Factura> Factura { get; set; }
         public virtual Usuarios Usuarios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }
     }
 }
