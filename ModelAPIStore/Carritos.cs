@@ -64,7 +64,6 @@ namespace ModelAPIStore
         public int Totalizar()
         {
             return elementos.Sum(x => x.SubTotal);
-
         }
         public int Contar()
         {

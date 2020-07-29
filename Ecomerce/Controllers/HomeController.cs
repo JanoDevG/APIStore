@@ -26,8 +26,6 @@ namespace Ecomerce.Controllers
             return View(productos);
         }
 
-        
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
