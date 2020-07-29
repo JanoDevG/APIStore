@@ -52,20 +52,14 @@ namespace APIStore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Productos productos)
         {
-            if (ModelState.IsValid)
-            {
                 Productos pro = await db.Productos.Where(x => x.id_producto == productos.id_producto).FirstOrDefaultAsync();
                 if (pro == null)
                 {
+                    productos.fecha_creacion = DateTime.Now;
                     db.Productos.Add(productos);
                     await db.SaveChangesAsync();
                 }
                 return RedirectToAction("Index");
-            }
-
-            ViewBag.id_lenguaje = new SelectList(db.Lenguaje_Backend, "id_lenguaje", "nombre", productos.id_lenguaje);
-            ViewBag.id_licencia = new SelectList(db.Tipo_Licencias, "id_licencia", "nombre_licencia", productos.id_licencia);
-            return View(productos);
         }
 
         // GET: Productos/Edit/5

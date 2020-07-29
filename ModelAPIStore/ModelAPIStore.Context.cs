@@ -38,5 +38,6 @@ namespace ModelAPIStore
         public virtual DbSet<Tipo_Licencias> Tipo_Licencias { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Ventas> Ventas { get; set; }
+        public virtual DbSet<Imagenes> Imagenes { get; set; }
     }
 }
