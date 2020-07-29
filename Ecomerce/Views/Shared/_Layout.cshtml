@@ -18,11 +18,20 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <span class="navbar-text">
-        <button type="button" class="btn btn-secondary">Iniciar Sesión</button>
-        <button type="button" class="btn btn-primary">Registrarse</button>
-        @{ 
-            //ModelAPIStore.Usuarios us = null;
-            //us = ()
+        @{
+            Ecomerce.Models.UsuariosViewModel usu = (Ecomerce.Models.UsuariosViewModel)Session["Usuario"];
+            if (usu != null)
+            {
+                <span class="navbar-text">
+                    Hola! @usu.Nombre
+                </span>
+                <a href="/Usuarios/Cerrar">Cerrar Sesión</a>
+            }
+            else
+            {
+                <a class="btn btn-secondary" href="/Usuarios">Iniciar Sesión</a>
+                <a class="btn btn-primary" href="/Usuarios/Registro">Registrarse</a>
+            }
         }
     </span>
   </div>

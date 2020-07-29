@@ -57,12 +57,9 @@
                     html += "<div class='col-md-3'>" + json.elementos[i].SubTotal + "</div>";
                     html += "<div class='col-md-1'><a onclick='EliminarCarrito(" + json.elementos[i].id_producto + ")' href='#'>X</a></div>";
                 }
-                html += "<div class='col-md-3'></div>";
-                html += "<div class='col-md-2'></div>";
-                html += "<div class='col-md-3'></div>";
                 html += "<div class='col-md-3'> TOTAL:" + json.total + "</div>";
-                html += "<div class='col-md-1'></div>";
                 html += "</div>";
+                html += "<div class='col-md-3'></div>";
                 cCarrito.innerHTML = html;
             }
         }

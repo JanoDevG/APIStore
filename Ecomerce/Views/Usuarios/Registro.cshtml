@@ -1,16 +1,14 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Registro";
 }
-
 <h2>Registro</h2>
-
-<form>
-    <input type="email" name="email" placeholder="Ingrese correo"/>
-    <input type="text" name="apodo"placeholder="Ingrese nombre"/>
-    <input type="password" name="password" placeholder="Ingrese contraseñ"/>
-    <input type="password" name="RePassword" placeholder="Reingrese contraseña"/>
-    <input type="button" name="Registrarse" />
+<form method="post" action="/Usuarios/Registrar">
+    <input type="email" name="email" placeholder="Ingrese correo" />
+    <input type="text" name="nombre" placeholder="Ingrese nombre" />
+    <input type="text" name="rut" placeholder="Ingrese rut con guión" />
+    <input type="text" name="apellido" placeholder="Ingrese apellido" />
+    <input type="password" name="password" placeholder="Ingrese contraseñ" />
+    <input type="password" name="RePassword" placeholder="Reingrese contraseña" />
+    <button>Registrarse</button>
 </form>
-<div>Usted no tiene usuario?? crear uno <a href="/Usuarios/Registro"></a></div>
 <div class="alert-danger">@ViewBag.Mensaje</div>

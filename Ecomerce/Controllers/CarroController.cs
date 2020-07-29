@@ -95,33 +95,17 @@ namespace Ecomerce.Controllers
 
         public ActionResult Pagar()
         {
-            UsuariosViewModel usu = (UsuariosViewModel)Session["Usuario"];
-            if (usu == null)
+            Ventas ven = new Ventas();
+            ven.fecha_venta = DateTime.Now;
+            ven.id_usuario = ((UsuariosViewModel)Session["Usuario"]).Id;
+            Carritos car = null;
+            car = (Carritos)Session["carrito"];
+            if (car != null)
             {
-                return Redirect("/Usuarios/Index");
-            }
-            Factura fac = new Factura();
-            fac.fecha_facturacion = DateTime.Now;
-            fac.id_factura = ((UsuariosViewModel)Session["Usuario"]).Id;
-            Carritos miCarrito = null;
 
-            miCarrito = (Carritos)Session["carrito"];
-            if (miCarrito != null)
-            {
-                ///*Ventas.montotal*/ = (short)miCarrito.Totalizar();
-                foreach (var item in miCarrito.Elementos)
-                {
-                    /*venta.detalleVenta.Add(new DetalleVenta){
-                     * cantidad = fac.cantidad,
-                     * idprod = det.id,
-                     * subtotal = (short det.subtotal)
-                     * }*/
-                }
             }
-            db.Factura.Add(fac);
+            db.Ventas.Add(ven);
             db.SaveChanges();
-            ViewBag.Mensaje = "Pago hecho con éxito";
-            return View();
         }
         protected override void Dispose(bool disposing)
         {
