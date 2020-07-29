@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Iniciar Sesión</h2>
+
+<form method="post" action="/Usuarios/Login">
+    <input type="email" name="email" placeholder="correo"/>
+    <input type="password" name="password" placeholder="contraseña"/>
+    <button>Ingresar</button>
+</form>
+<div>¿No está registrado? registrese <a href="/Usuarios/Registro">Aquí</a></div>
+<div class="alert-danger">@ViewBag.Mensaje</div>

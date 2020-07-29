@@ -12,11 +12,12 @@ namespace ModelAPIStore
     using System;
     using System.Collections.Generic;
     
-    public partial class Productos
+    public partial class Productos : ProductosCarritos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Productos()
         {
+            this.Imagenes = new HashSet<Imagenes>();
             this.Detalle_Ventas = new HashSet<Detalle_Ventas>();
         }
     
@@ -30,9 +31,11 @@ namespace ModelAPIStore
         public Nullable<bool> suspencion { get; set; }
         public Nullable<System.DateTime> fecha_suspencion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }
         public virtual Lenguaje_Backend Lenguaje_Backend { get; set; }
         public virtual Tipo_Licencias Tipo_Licencias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Imagenes> Imagenes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }
     }
 }
