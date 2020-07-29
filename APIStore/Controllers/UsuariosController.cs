@@ -92,8 +92,6 @@ namespace APIStore.Controllers
                 usu.nombre_usuario = usuarios.nombre_usuario;
                 usu.apellido_usuario = usuarios.apellido_usuario;
                 usu.rut_usuario = usuarios.rut_usuario;
-                usu.giro_empresa = usuarios.giro_empresa;
-                usu.rut_empresa = usuarios.rut_empresa;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

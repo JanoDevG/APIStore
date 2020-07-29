@@ -12,6 +12,7 @@ namespace Ecomerce.Controllers
         private APIStoreEntities1 db = new APIStoreEntities1();
         public ActionResult Index(int pagina = 1)
         {
+            List<Tipo_Licencias> lis = db.Tipo_Licencias.ToList();
             int mostrar = 2;
             int saltar = (pagina - 1) * mostrar;
             List<Productos> productos = db.Productos
@@ -25,6 +26,7 @@ namespace Ecomerce.Controllers
             ViewBag.pag = pagina;
             return View(productos);
         }
+
 
         protected override void Dispose(bool disposing)
         {

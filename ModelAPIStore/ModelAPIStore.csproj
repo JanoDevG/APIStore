@@ -59,9 +59,6 @@
     <Compile Include="Ciudades.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>
-    <Compile Include="Cuentas.cs">
-      <DependentUpon>ModelAPIStore.tt</DependentUpon>
-    </Compile>
     <Compile Include="Despachos_Electronico.cs">
       <DependentUpon>ModelAPIStore.tt</DependentUpon>
     </Compile>

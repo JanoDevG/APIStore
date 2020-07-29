@@ -56,10 +56,6 @@ namespace ModelAPIStore
             {
                 elementos.Remove(p);
             }
-            else
-            {
-
-            }
         }
         public int Totalizar()
         {

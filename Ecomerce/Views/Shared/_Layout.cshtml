@@ -16,19 +16,23 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Sin uso<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sin uso</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sin uso</a>
-      </li>
     </ul>
     <span class="navbar-text">
-        <button type="button" class="btn btn-secondary">Iniciar Sesión</button>
-        <button type="button" class="btn btn-primary">Registrarse</button>
+        @{
+            Ecomerce.Models.UsuariosViewModel usu = (Ecomerce.Models.UsuariosViewModel)Session["Usuario"];
+            if (usu != null)
+            {
+                <span class="navbar-text">
+                    Hola! @usu.Nombre
+                </span>
+                <a href="/Usuarios/Cerrar">Cerrar Sesión</a>
+            }
+            else
+            {
+                <a class="btn btn-secondary" href="/Usuarios">Iniciar Sesión</a>
+                <a class="btn btn-primary" href="/Usuarios/Registro">Registrarse</a>
+            }
+        }
     </span>
   </div>
 </nav>

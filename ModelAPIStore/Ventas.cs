@@ -23,10 +23,10 @@ namespace ModelAPIStore
     
         public int id_venta { get; set; }
         public int id_usuario { get; set; }
-        public int id_producto { get; set; }
         public System.DateTime fecha_venta { get; set; }
         public Nullable<bool> suspencion { get; set; }
         public Nullable<System.DateTime> fecha_suspencion { get; set; }
+        public int monto_total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle_Ventas> Detalle_Ventas { get; set; }

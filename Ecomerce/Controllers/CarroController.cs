@@ -1,4 +1,5 @@
-﻿using ModelAPIStore;
+﻿using Ecomerce.Models;
+using ModelAPIStore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,16 +48,19 @@ namespace Ecomerce.Controllers
             }
             int cantidad = carrito.Contar();
             int total = carrito.Totalizar();
-            return Json(carrito.Elementos.Select(x => new
-            {
-                x.id_producto,
-                x.nombre_producto,
-                x.precio,
-                x.Cantidad,
-                x.SubTotal,
-                total,
-                cantidad
-            }), JsonRequestBehavior.AllowGet);
+            return Json(
+                new {
+                    total,
+                    cantidad,
+                    elementos = carrito.Elementos.Select(x => new
+                    {
+                        x.id_producto,
+                        x.nombre_producto,
+                        x.precio,
+                        x.Cantidad,
+                        x.SubTotal
+                    })
+                }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Eliminar(int id_producto)
         {
@@ -87,6 +91,42 @@ namespace Ecomerce.Controllers
             }
             carrito.Editar(id, Cantidad);
             return Json(new { Mensaje = "editado con exito", Estado = true });
+        }
+
+        public ActionResult Pagar()
+        {
+            UsuariosViewModel usu = (UsuariosViewModel)Session["Usuario"];
+            if (usu == null)
+            {
+                return Redirect("/Usuarios/Index");
+            }
+            Ventas ven = new Ventas();
+            ven.fecha_venta = DateTime.Now;
+            ven.id_usuario = ((UsuariosViewModel)Session["Usuario"]).Id;
+            Carritos car = null;
+            car = (Carritos)Session["carrito"];
+            if (car != null)
+            {
+                ven.monto_total = car.Totalizar();
+                ven.Detalle_Ventas = new List<Detalle_Ventas>();
+                foreach (var item in car.Elementos)
+                {
+                    ven.Detalle_Ventas.Add(new Detalle_Ventas()
+                    {
+                        cantidad = item.Cantidad,
+                        id_producto = item.id_producto,
+                    });
+                }
+                ViewBag.Mensaje = "Producto comprado";
+                db.Ventas.Add(ven);
+                db.SaveChanges();
+                return View();
+            }
+            else
+            {
+                ViewBag.Mensaje = "el carro está vacío";
+                return View();
+            }
         }
         protected override void Dispose(bool disposing)
         {
