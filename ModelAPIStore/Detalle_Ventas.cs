@@ -19,6 +19,7 @@ namespace ModelAPIStore
         public int id_venta { get; set; }
         public Nullable<bool> suspencion { get; set; }
         public Nullable<System.DateTime> fecha_suspencion { get; set; }
+        public int cantidad { get; set; }
     
         public virtual Productos Productos { get; set; }
         public virtual Ventas Ventas { get; set; }

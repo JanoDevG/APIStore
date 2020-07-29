@@ -27,7 +27,6 @@ namespace ModelAPIStore
     
         public virtual DbSet<Ciudades> Ciudades { get; set; }
         public virtual DbSet<Despachos_Electronico> Despachos_Electronico { get; set; }
-        public virtual DbSet<Detalle_Ventas> Detalle_Ventas { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Factura> Factura { get; set; }
         public virtual DbSet<Lenguaje_Backend> Lenguaje_Backend { get; set; }
@@ -35,8 +34,9 @@ namespace ModelAPIStore
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Regiones> Regiones { get; set; }
         public virtual DbSet<Tipo_Licencias> Tipo_Licencias { get; set; }
-        public virtual DbSet<Ventas> Ventas { get; set; }
         public virtual DbSet<Imagenes> Imagenes { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Ventas> Ventas { get; set; }
+        public virtual DbSet<Detalle_Ventas> Detalle_Ventas { get; set; }
     }
 }
