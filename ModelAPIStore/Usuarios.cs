@@ -17,7 +17,6 @@ namespace ModelAPIStore
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuarios()
         {
-            this.Cuentas = new HashSet<Cuentas>();
             this.Ventas = new HashSet<Ventas>();
         }
     
@@ -25,13 +24,11 @@ namespace ModelAPIStore
         public string nombre_usuario { get; set; }
         public string apellido_usuario { get; set; }
         public string rut_usuario { get; set; }
-        public string giro_empresa { get; set; }
-        public string rut_empresa { get; set; }
         public Nullable<bool> suspencion { get; set; }
         public Nullable<System.DateTime> fecha_susencion { get; set; }
+        public string correo { get; set; }
+        public string password { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cuentas> Cuentas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ventas> Ventas { get; set; }
     }

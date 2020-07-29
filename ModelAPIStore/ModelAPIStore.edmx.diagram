@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="5a56118575ec42e0911e1e8328929cff" Name="Diagram1">
         <EntityTypeShape EntityType="APIStoreModel.Ciudades" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Cuentas" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Despachos_Electronico" Width="1.5" PointX="10.5" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Detalle_Ventas" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Direccion" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
@@ -16,11 +15,9 @@
         <EntityTypeShape EntityType="APIStoreModel.Productos" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Regiones" Width="1.5" PointX="1.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Tipo_Licencias" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStoreModel.Usuarios" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStoreModel.Ventas" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="APIStoreModel.FK_Ciudades_Regiones" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Direccion_Ciudades" ManuallyRouted="false" />
-        <AssociationConnector Association="APIStoreModel.FK_Cuentas_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Despachos_Electronico_Factura" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Detalle_Ventas_Productos" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Detalle_Ventas_Ventas" ManuallyRouted="false" />
@@ -29,9 +26,10 @@
         <AssociationConnector Association="APIStoreModel.FK_Productos_Lenguaje_Backend" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Regiones_Paises" ManuallyRouted="false" />
         <AssociationConnector Association="APIStoreModel.FK_Productos_Tipo_Licencias" ManuallyRouted="false" />
-        <AssociationConnector Association="APIStoreModel.FK_Ventas_Usuarios" ManuallyRouted="false" />
         <EntityTypeShape EntityType="APIStoreModel.Imagenes" Width="1.5" PointX="5.25" PointY="16.375" />
         <AssociationConnector Association="APIStoreModel.FK_Imagenes_Productos" />
+        <EntityTypeShape EntityType="APIStoreModel.Usuarios" Width="1.5" PointX="0.75" PointY="8.75" />
+        <AssociationConnector Association="APIStoreModel.FK_Ventas_Usuarios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

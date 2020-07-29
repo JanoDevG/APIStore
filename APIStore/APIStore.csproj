@@ -185,7 +185,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CiudadesController.cs" />
-    <Compile Include="Controllers\CuentasController.cs" />
     <Compile Include="Controllers\Despachos_ElectronicoController.cs" />
     <Compile Include="Controllers\Detalle_VentasController.cs" />
     <Compile Include="Controllers\DireccionsController.cs" />
@@ -225,11 +224,6 @@
     <Content Include="Views\Ciudades\Details.cshtml" />
     <Content Include="Views\Ciudades\Edit.cshtml" />
     <Content Include="Views\Ciudades\Index.cshtml" />
-    <Content Include="Views\Cuentas\Create.cshtml" />
-    <Content Include="Views\Cuentas\Delete.cshtml" />
-    <Content Include="Views\Cuentas\Details.cshtml" />
-    <Content Include="Views\Cuentas\Edit.cshtml" />
-    <Content Include="Views\Cuentas\Index.cshtml" />
     <Content Include="Views\Despachos_Electronico\Create.cshtml" />
     <Content Include="Views\Despachos_Electronico\Delete.cshtml" />
     <Content Include="Views\Despachos_Electronico\Details.cshtml" />

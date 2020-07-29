@@ -20,16 +20,16 @@ namespace Ecomerce.Controllers
 
         public async System.Threading.Tasks.Task<ActionResult> LoginAsync(string email, string password)
         {
-            var cuenta = await db.Cuentas.Where(x => x.correo == email && x.password == password).FirstOrDefaultAsync();
-            if (cuenta == null)
+            var usuarios = await db.Usuarios.Where(x => x.correo == email && x.password == password).FirstOrDefaultAsync();
+            if (usuarios == null)
             {
-                if (cuenta != null)
+                if (usuarios != null)
                 {
                     UsuariosViewModel mod = new UsuariosViewModel();
-                    mod.Id = cuenta.id_cuenta;
+                    mod.Id = usuarios.id_usuario;
                     //mod.Nombre = //usuario.nombre;
                 }
-                Session["Usuario"] = cuenta;
+                Session["Usuario"] = usuarios;
                 return Redirect("Home/Index");
             }
             else
@@ -52,8 +52,8 @@ namespace Ecomerce.Controllers
                 ViewBag.Mensaje = "Las contraseñas no coinciden, reintente";
                 return View("Registro");
             }
-            Cuentas usu = null;
-            usu = db.Cuentas.Where(x => x.correo == email).FirstOrDefault();
+            Usuarios usu = null;
+            usu = db.Usuarios.Where(x => x.correo == email).FirstOrDefault();
             if (usu != null)
             {
                 ViewBag.Mensaje = "Registro exitoso";
@@ -62,7 +62,7 @@ namespace Ecomerce.Controllers
             else
             {
                 new Usuarios();
-                Cuentas cu = new Cuentas();
+                Usuarios cu = new Usuarios();
                 cu.password = password;
                 cu.correo = email;
             }

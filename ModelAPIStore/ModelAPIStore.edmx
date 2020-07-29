@@ -15,20 +15,6 @@
           <Property Name="suspencion" Type="bit" />
           <Property Name="fecha_suspencion" Type="datetime" />
         </EntityType>
-        <EntityType Name="Cuentas">
-          <Key>
-            <PropertyRef Name="id_cuenta" />
-          </Key>
-          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_usuario" Type="int" Nullable="false" />
-          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="usuario_supendido" Type="bit" />
-          <Property Name="fecha_suspencion" Type="datetime" />
-          <Property Name="fecha_creacion" Type="datetime" Nullable="false" />
-          <Property Name="suspencion" Type="bit" />
-          <Property Name="fechasuspencion" Type="datetime" />
-        </EntityType>
         <EntityType Name="Despachos_Electronico">
           <Key>
             <PropertyRef Name="id_despacho" />
@@ -80,7 +66,7 @@
           </Key>
           <Property Name="id_imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_producto" Type="int" Nullable="false" />
-          <Property Name="url" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="5000" Nullable="false" />
         </EntityType>
         <EntityType Name="Lenguaje_Backend">
           <Key>
@@ -142,10 +128,10 @@
           <Property Name="nombre_usuario" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="apellido_usuario" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="rut_usuario" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="giro_empresa" Type="varchar" MaxLength="40" />
-          <Property Name="rut_empresa" Type="varchar" MaxLength="10" />
           <Property Name="suspencion" Type="bit" />
           <Property Name="fecha_susencion" Type="datetime" />
+          <Property Name="correo" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Ventas">
           <Key>
@@ -167,18 +153,6 @@
             </Principal>
             <Dependent Role="Ciudades">
               <PropertyRef Name="id_region" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuentas_Usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="Cuentas">
-              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -316,7 +290,6 @@
         </Association>
         <EntityContainer Name="APIStoreModelStoreContainer">
           <EntitySet Name="Ciudades" EntityType="Self.Ciudades" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Despachos_Electronico" EntityType="Self.Despachos_Electronico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle_Ventas" EntityType="Self.Detalle_Ventas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
@@ -332,10 +305,6 @@
           <AssociationSet Name="FK_Ciudades_Regiones" Association="Self.FK_Ciudades_Regiones">
             <End Role="Regiones" EntitySet="Regiones" />
             <End Role="Ciudades" EntitySet="Ciudades" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuentas_Usuarios" Association="Self.FK_Cuentas_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Cuentas" EntitySet="Cuentas" />
           </AssociationSet>
           <AssociationSet Name="FK_Despachos_Electronico_Factura" Association="Self.FK_Despachos_Electronico_Factura">
             <End Role="Factura" EntitySet="Factura" />
@@ -397,21 +366,6 @@
           <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Regiones" Relationship="Self.FK_Ciudades_Regiones" FromRole="Ciudades" ToRole="Regiones" />
           <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Ciudades" FromRole="Ciudades" ToRole="Direccion" />
-        </EntityType>
-        <EntityType Name="Cuentas">
-          <Key>
-            <PropertyRef Name="id_cuenta" />
-          </Key>
-          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_usuario" Type="Int32" Nullable="false" />
-          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="usuario_supendido" Type="Boolean" />
-          <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
-          <Property Name="fecha_creacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="suspencion" Type="Boolean" />
-          <Property Name="fechasuspencion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Cuentas" ToRole="Usuarios" />
         </EntityType>
         <EntityType Name="Despachos_Electronico">
           <Key>
@@ -527,21 +481,6 @@
           <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Tipo_Licencias" FromRole="Tipo_Licencias" ToRole="Productos" />
         </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="id_usuario" />
-          </Key>
-          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_usuario" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido_usuario" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="rut_usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="giro_empresa" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="rut_empresa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="suspencion" Type="Boolean" />
-          <Property Name="fecha_susencion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cuentas" Relationship="Self.FK_Cuentas_Usuarios" FromRole="Usuarios" ToRole="Cuentas" />
-          <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
-        </EntityType>
         <EntityType Name="Ventas">
           <Key>
             <PropertyRef Name="id_venta" />
@@ -554,7 +493,7 @@
           <Property Name="fecha_suspencion" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Detalle_Ventas" Relationship="Self.FK_Detalle_Ventas_Ventas" FromRole="Ventas" ToRole="Detalle_Ventas" />
           <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Ventas" FromRole="Ventas" ToRole="Factura" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
+          <NavigationProperty Name="Usuarios" Relationship="APIStoreModel.FK_Ventas_Usuarios" FromRole="Ventas" ToRole="Usuarios" />
         </EntityType>
         <Association Name="FK_Ciudades_Regiones">
           <End Role="Regiones" Type="Self.Regiones" Multiplicity="1" />
@@ -577,18 +516,6 @@
             </Principal>
             <Dependent Role="Direccion">
               <PropertyRef Name="id_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cuentas_Usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="Cuentas">
-              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,21 +615,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ventas_Usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="id_usuario" />
-            </Principal>
-            <Dependent Role="Ventas">
-              <PropertyRef Name="id_usuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="APIStoreEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Ciudades" EntityType="Self.Ciudades" />
-          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
           <EntitySet Name="Despachos_Electronico" EntityType="Self.Despachos_Electronico" />
           <EntitySet Name="Detalle_Ventas" EntityType="Self.Detalle_Ventas" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" />
@@ -712,7 +626,6 @@
           <EntitySet Name="Productos" EntityType="Self.Productos" />
           <EntitySet Name="Regiones" EntityType="Self.Regiones" />
           <EntitySet Name="Tipo_Licencias" EntityType="Self.Tipo_Licencias" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Ventas" EntityType="Self.Ventas" />
           <AssociationSet Name="FK_Ciudades_Regiones" Association="Self.FK_Ciudades_Regiones">
             <End Role="Regiones" EntitySet="Regiones" />
@@ -721,10 +634,6 @@
           <AssociationSet Name="FK_Direccion_Ciudades" Association="Self.FK_Direccion_Ciudades">
             <End Role="Ciudades" EntitySet="Ciudades" />
             <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cuentas_Usuarios" Association="Self.FK_Cuentas_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Cuentas" EntitySet="Cuentas" />
           </AssociationSet>
           <AssociationSet Name="FK_Despachos_Electronico_Factura" Association="Self.FK_Despachos_Electronico_Factura">
             <End Role="Factura" EntitySet="Factura" />
@@ -758,14 +667,15 @@
             <End Role="Tipo_Licencias" EntitySet="Tipo_Licencias" />
             <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ventas_Usuarios" Association="Self.FK_Ventas_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Ventas" EntitySet="Ventas" />
-          </AssociationSet>
           <EntitySet Name="Imagenes" EntityType="APIStoreModel.Imagenes" />
           <AssociationSet Name="FK_Imagenes_Productos" Association="APIStoreModel.FK_Imagenes_Productos">
             <End Role="Productos" EntitySet="Productos" />
             <End Role="Imagenes" EntitySet="Imagenes" />
+          </AssociationSet>
+          <EntitySet Name="Usuarios" EntityType="APIStoreModel.Usuarios" />
+          <AssociationSet Name="FK_Ventas_Usuarios" Association="APIStoreModel.FK_Ventas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Imagenes">
@@ -774,7 +684,7 @@
           </Key>
           <Property Name="id_imagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_producto" Type="Int32" Nullable="false" />
-          <Property Name="url" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="5000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Productos" Relationship="APIStoreModel.FK_Imagenes_Productos" FromRole="Imagenes" ToRole="Productos" />
         </EntityType>
         <Association Name="FK_Imagenes_Productos">
@@ -786,6 +696,32 @@
             </Principal>
             <Dependent Role="Imagenes">
               <PropertyRef Name="id_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="apellido_usuario" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="rut_usuario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="suspencion" Type="Boolean" />
+          <Property Name="fecha_susencion" Type="DateTime" Precision="3" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ventas" Relationship="APIStoreModel.FK_Ventas_Usuarios" FromRole="Usuarios" ToRole="Ventas" />
+        </EntityType>
+        <Association Name="FK_Ventas_Usuarios">
+          <End Type="APIStoreModel.Usuarios" Role="Usuarios" Multiplicity="1" />
+          <End Type="APIStoreModel.Ventas" Role="Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="id_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -803,21 +739,6 @@
                 <ScalarProperty Name="nombre_ciudad" ColumnName="nombre_ciudad" />
                 <ScalarProperty Name="suspencion" ColumnName="suspencion" />
                 <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cuentas">
-            <EntityTypeMapping TypeName="APIStoreModel.Cuentas">
-              <MappingFragment StoreEntitySet="Cuentas">
-                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="usuario_supendido" ColumnName="usuario_supendido" />
-                <ScalarProperty Name="fecha_suspencion" ColumnName="fecha_suspencion" />
-                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
-                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
-                <ScalarProperty Name="fechasuspencion" ColumnName="fechasuspencion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -927,20 +848,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="APIStoreModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
-                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
-                <ScalarProperty Name="apellido_usuario" ColumnName="apellido_usuario" />
-                <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
-                <ScalarProperty Name="giro_empresa" ColumnName="giro_empresa" />
-                <ScalarProperty Name="rut_empresa" ColumnName="rut_empresa" />
-                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
-                <ScalarProperty Name="fecha_susencion" ColumnName="fecha_susencion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="APIStoreModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
@@ -959,6 +866,20 @@
                 <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="id_imagen" ColumnName="id_imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="APIStoreModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="fecha_susencion" ColumnName="fecha_susencion" />
+                <ScalarProperty Name="suspencion" ColumnName="suspencion" />
+                <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
+                <ScalarProperty Name="apellido_usuario" ColumnName="apellido_usuario" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
