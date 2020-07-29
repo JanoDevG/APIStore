@@ -11,10 +11,10 @@
         vertical-align: top;
     }
 
-    #catalogo > div > img {
-        width: 100px;
-        height: 100px;
-    }
+        #catalogo > div > img {
+            width: 100px;
+            height: 100px;
+        }
 
     .Imagenes {
         min-height: 250px;
@@ -25,7 +25,7 @@
     function AgregarCarrito(id_producto) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
-    formData.append("id_producto", id_producto);
+        formData.append("id_producto", id_producto);
         xhr.onreadystatechange = function () {
             if (xhr.status == 200 && xhr.readyState == 4) {
                 //console.log(xhr.responseText);
@@ -60,8 +60,7 @@
                 html += "<div class='col-md-3'></div>";
                 html += "<div class='col-md-2'></div>";
                 html += "<div class='col-md-3'></div>";
-                html += "<div class='col-md-3' <a class='' href='/Carro/Pagar'>Pagar</a>></div>";
-                html += "<div class='col-md-3'>Precio:" + json.total + "</div>";
+                html += "<div class='col-md-3'> TOTAL:" + json.total + "</div>";
                 html += "<div class='col-md-1'></div>";
                 html += "</div>";
                 cCarrito.innerHTML = html;
@@ -96,24 +95,35 @@
         xhr.send(formData);
     }
 </script>
-<h2>Index</h2>
+<!-- Jumbotron Header -->
+<header class="jumbotron my-4">
+    <h1 class="display-3">Bienvenido a APIStore</h1>
+    <p class="lead">Tienda virtual para la compra de APIs, integradores de servicios y actualizadores de servicios SOAP a Rest para mantener actualizado tus servicios de transacciones de información.</p>
+    <p class="lead">Ya sea desde tu oficina o la nube.</p>
+</header>
 <div id="catalogo">
-    @{foreach (ModelAPIStore.Productos p in Model){
+    @{foreach (ModelAPIStore.Productos p in Model)
+        {
         <div>
             <div class="Imagenes">
                 <div id="carouselProducto_@p.id_producto" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-                        @if (p.Imagenes.Count == 0){
+                        @if (p.Imagenes.Count == 0)
+                        {
                             <img src="/Content/img/no disponible.png" />}
-                                @for (int i = 0; i < p.Imagenes.Count; i++){
-                                    if (i == 0){
-                                        <div class="carousel-item active">
-                                            <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
-                                        </div>}
-                                    else{
-                                        <div class="carousel-item">
-                                            <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
-                                        </div>}}
+                        @for (int i = 0; i < p.Imagenes.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="carousel-item active">
+                                    <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
+                                </div>}
+                            else
+                            {
+                                <div class="carousel-item">
+                                    <img src="http://localhost:61285/@p.Imagenes.ElementAt(i).url" style="width:100px; height:250px;" class="d-block w-100">
+                                </div>}
+                        }
                     </div>
                     <a class="carousel-control-prev" href="#carouselProducto_@p.id_producto" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -125,22 +135,29 @@
                     </a>
                 </div>
             </div>
-            <div>@p.nombre_producto</div>
-            <div>@p.precio</div>
-            <div><button id="@p.id_producto" onclick="AgregarCarrito(@p.id_producto)">Comprar/Ver</button></div>
+            <div style="text-align: center">Nombre: @p.nombre_producto</div>
+            <div style="text-align: center">Precio: @p.precio</div>
+            <div><button id="@p.id_producto" onclick="AgregarCarrito(@p.id_producto)" class="btn btn-primary" style="align-items: center">Agregar producto</button></div>
         </div>}}
 </div>
+
 <nav aria-label="...">
     <ul class="pagination">
-        @if (ViewBag.pag > 1){
+        @if (ViewBag.pag > 1)
+        {
             <li class="page-item">
-            <a class="page-link" href="/Home/Index?pagina=@(ViewBag.pag-1)">Atrás</a>
-            </li>}
-            @for (int i = 0; i < ViewBag.Paginacion; i++){
-                <li class="page-item"><a class="page-link" href="/Home/Index?pagina=@(i+1)">@(i+1)</a></li>}
-                    @if (ViewBag.pag < ViewBag.paginacion){
-                        <li class="page-item">
-                            <a class="page-link" href="/Home/Index?pagina=@(ViewBag.pag+1)">Siguiente</a>
-                        </li>}
+                <a class="page-link" href="/Home/Index?pagina=@(ViewBag.pag-1)">Atrás</a>
+            </li>
+}
+        @for (int i = 0; i < ViewBag.Paginacion; i++)
+        {
+            <li class="page-item"><a class="page-link" href="/Home/Index?pagina=@(i+1)">@(i+1)</a></li>
+}
+        @if (ViewBag.pag < ViewBag.paginacion)
+        {
+            <li class="page-item">
+                <a class="page-link" href="/Home/Index?pagina=@(ViewBag.pag+1)">Siguiente</a>
+            </li>
+}
     </ul>
 </nav>

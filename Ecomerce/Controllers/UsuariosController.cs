@@ -1,10 +1,7 @@
 ﻿using Ecomerce.Models;
 using ModelAPIStore;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Ecomerce.Controllers
@@ -37,7 +34,7 @@ namespace Ecomerce.Controllers
                 ViewBag.Mensaje = "Datos incorrecto, verifique para reintentar";
                 return View("Index");
             }
-            
+
         }
 
         public ActionResult Registro()
@@ -68,7 +65,7 @@ namespace Ecomerce.Controllers
             }
             ViewBag.Mensaje = "Usuario creado con éxito";
             return View("Index");
-            
+
         }
 
         public ActionResult Cerrar()
