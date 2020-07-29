@@ -50,18 +50,18 @@
                 html += "<div class='col-md-3'>Precio</div>";
                 html += "<div class='col-md-3'>Cantidad</div>";
                 html += "<div class='col-md-3'>SubTotal</div>";
-                for (var i = 0; i < json.length; i++) {
-                    html += "<div class='col-md-3'>" + json[i].nombre_producto + "</div>";
-                    html += "<div class='col-md-2'>" + json[i].precio + "</div>";
-                    html += "<div class='col-md-3'><input onblur='EditarCarrito(" + json[i].id_producto + ",this)' class='form-control' value=" + json[i].Cantidad + "></div>";
-                    html += "<div class='col-md-3'>" + json[i].SubTotal + "</div>";
-                    html += "<div class='col-md-1'><a onclick='EliminarCarrito(" + json[i].id_producto + ")' href='#'>X</a></div>";
-                    html += "<div class='col-md-3'>Total: " + json[json.length - 1].total + "</div>";
+                for (var i = 0; i < json.elementos.length; i++) {
+                    html += "<div class='col-md-3'>" + json.elementos[i].nombre_producto + "</div>";
+                    html += "<div class='col-md-2'>" + json.elementos[i].precio + "</div>";
+                    html += "<div class='col-md-3'><input onblur='EditarCarrito(" + json.elementos[i].id_producto + ",this)' class='form-control' value=" + json.elementos[i].Cantidad + "></div>";
+                    html += "<div class='col-md-3'>" + json.elementos[i].SubTotal + "</div>";
+                    html += "<div class='col-md-1'><a onclick='EliminarCarrito(" + json.elementos[i].id_producto + ")' href='#'>X</a></div>";
                 }
                 html += "<div class='col-md-3'></div>";
                 html += "<div class='col-md-2'></div>";
                 html += "<div class='col-md-3'></div>";
-                //html += "<div class='col-md-3'>Precio:" + json[json.length - 1].total + "</div>";
+                html += "<div class='col-md-3' <a class='' href='/Carro/Pagar'>Pagar</a>></div>";
+                html += "<div class='col-md-3'>Precio:" + json.total + "</div>";
                 html += "<div class='col-md-1'></div>";
                 html += "</div>";
                 cCarrito.innerHTML = html;

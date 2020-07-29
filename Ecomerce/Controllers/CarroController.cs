@@ -1,4 +1,5 @@
-﻿using ModelAPIStore;
+﻿using Ecomerce.Models;
+using ModelAPIStore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,16 +48,19 @@ namespace Ecomerce.Controllers
             }
             int cantidad = carrito.Contar();
             int total = carrito.Totalizar();
-            return Json(carrito.Elementos.Select(x => new
-            {
-                x.id_producto,
-                x.nombre_producto,
-                x.precio,
-                x.Cantidad,
-                x.SubTotal,
-                total,
-                cantidad
-            }), JsonRequestBehavior.AllowGet);
+            return Json(
+                new {
+                    total,
+                    cantidad,
+                    elementos = carrito.Elementos.Select(x => new
+                    {
+                        x.id_producto,
+                        x.nombre_producto,
+                        x.precio,
+                        x.Cantidad,
+                        x.SubTotal
+                    })
+                }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult Eliminar(int id_producto)
         {
@@ -87,6 +91,37 @@ namespace Ecomerce.Controllers
             }
             carrito.Editar(id, Cantidad);
             return Json(new { Mensaje = "editado con exito", Estado = true });
+        }
+
+        public ActionResult Pagar()
+        {
+            UsuariosViewModel usu = (UsuariosViewModel)Session["Usuario"];
+            if (usu == null)
+            {
+                return Redirect("/Usuarios/Index");
+            }
+            Factura fac = new Factura();
+            fac.fecha_facturacion = DateTime.Now;
+            fac.id_factura = ((UsuariosViewModel)Session["Usuario"]).Id;
+            Carritos miCarrito = null;
+
+            miCarrito = (Carritos)Session["carrito"];
+            if (miCarrito != null)
+            {
+                ///*Ventas.montotal*/ = (short)miCarrito.Totalizar();
+                foreach (var item in miCarrito.Elementos)
+                {
+                    /*venta.detalleVenta.Add(new DetalleVenta){
+                     * cantidad = fac.cantidad,
+                     * idprod = det.id,
+                     * subtotal = (short det.subtotal)
+                     * }*/
+                }
+            }
+            db.Factura.Add(fac);
+            db.SaveChanges();
+            ViewBag.Mensaje = "Pago hecho con éxito";
+            return View();
         }
         protected override void Dispose(bool disposing)
         {
