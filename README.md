@@ -15,4 +15,4 @@ El archivo `script.sql` en la carpeta raíz es el script que estructura la base 
 
 
 ## Autor ✒️
-* **Alejandro Gutiérrez** - *Trabajo Inicial* - [AlejandroGI](https://github.com/AlejandroGI)
+**Alejandro Gutiérrez** - [JanoDevG](https://github.com/JanoDevG)
